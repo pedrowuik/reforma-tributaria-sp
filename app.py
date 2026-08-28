@@ -52,13 +52,24 @@ opcao = st.session_state.opcao_selecionada
 # Conteúdo dinâmico baseado na escolha do botão
 if opcao == "1. Visão Geral & Marco Constitucional":
     st.header("Visão Geral & Fundamentos Constitucionais (EC 132/2023)")
-    st.write(
-        "A Emenda Constitucional nº 132/2023 reescreveu a arquitetura da tributação do consumo no Brasil, "
-        "estabelecendo a transição do princípio da origem para o **princípio do destino pleno**."
+    
+    st.markdown(
+        """
+        O panorama da tributação do consumo no Brasil historicamente caracterizou-se por um modelo fragmentado, "
+        "ineficiente e marcado por uma profunda desorganização normativa entre entes federativos, gerando excessiva carga "
+        "burocrática, contenciosos jurídicos intermináveis e distorções concorrenciais crônicas. Diante dessa complexidade "
+        "estrutural sem precedentes e da necessidade de acesso rápido e seguro a diretrizes normativas confiáveis, desenvolvi "
+        "este aplicativo analítico. A ferramenta integra simulações avançadas e inteligência artificial alimentada rigorosamente "
+        "por dados e fontes oficiais, com o propósito de blindar profissionais e empresas contra incertezas regulatórias e "
+        "oferecer clareza estratégica durante todo o período de transição da Reforma Tributária.
+        """
     )
 
     st.markdown(
         """
+    A Emenda Constitucional nº 132/2023 reescreveu a arquitetura da tributação do consumo no Brasil, "
+    estabelecendo a transição do princípio da origem para o **princípio do destino pleno**.
+
     - **Art. 156-A da CF/88:** Instituição do IBS (Imposto sobre Bens e Serviços), competência de Estados, DF e Municípios.
     - **Art. 195, V da CF/88:** Instituição da CBS (Contribuição Social sobre Bens e Serviços), competência da União.
     - **Neutralidade Econômica:** Eliminação de distorções logísticas e societárias induzidas por incentivos fiscais estaduais (Guerra Fiscal).
@@ -613,7 +624,8 @@ elif opcao == "📊 9. Simulador Interativo Setorial & Transição":
             max_value=50000000.0,
             value=10000.0,
             step=500.0,
-            format="%.2f"
+            format="%.2f",
+            key="fat_sim9"
         )
     with col_s2:
         ano_cronograma = st.selectbox(
@@ -943,7 +955,7 @@ elif opcao == "🤖 13. IA Consultora Oficial (Base de Dados do Governo)":
 
     pergunta_usuario = st.text_area(
         "Digite sua dúvida sobre a Reforma Tributária:",
-        placeholder="Ex: Como funciona a progressividade do ITCMD nas doações e heranças?"
+        placeholder="Ex: Quais são os impactos da transição constitucional para as empresas em 2026?"
     )
 
     if st.button("Consultar IA Oficial"):
