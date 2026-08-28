@@ -28,7 +28,8 @@ modulos = [
     "6. Cesta Básica & Alíquotas Reduzidas",
     "📊 7. Simulador Interativo Setorial (Estilo Pro)",
     "🚢 8. Simulação de Importação & Tributação no Destino",
-    "🤖 9. IA Consultora Oficial (Base de Dados do Governo)",
+    "📈 9. Impactos no SPED Fiscal (Atual vs. Futuro)",
+    "🤖 10. IA Consultora Oficial (Base de Dados do Governo)",
 ]
 
 # Gerenciamento de estado para lembrar qual botão foi clicado
@@ -457,7 +458,52 @@ elif opcao == "🚢 8. Simulação de Importação & Tributação no Destino":
             delta_color="normal"
         )
 
-elif opcao == "🤖 9. IA Consultora Oficial (Base de Dados do Governo)":
+elif opcao == "📈 9. Impactos no SPED Fiscal (Atual vs. Futuro)":
+    st.header("📈 Impactos no SPED Fiscal: Como é vs. Como Ficará")
+    st.write(
+        "O SPED Fiscal (EFD-ICMS/IPI) e as apurações acessórias federais passam por uma transformação radical "
+        "com a extinção dos tributos tradicionais e a implantação da apuração unificada do IVA Dual."
+    )
+
+    st.markdown("---")
+    col_s1, col_s2 = st.columns(2)
+
+    with col_s1:
+        st.error("❌ Como é no Sistema Atual (SPED Tradicional)")
+        st.markdown(
+            """
+        - **Complexidade de Registros:** Milhares de linhas nos blocos de apuração do ICMS (Bloco C, E, H) e PIS/Cofins (Bloco M).
+        - **Guia por Guia:** Emissão de dezenas de guias estaduais (GNRE, GARE) e federais (DARF) com vencimentos desencontrados.
+        - **Litigiosidade de Insumos:** Controle exaustivo e subjetivo sobre quais créditos de PIS/Cofins e ICMS podem ou não ser aproveitados.
+        - **Inconsistências Críticas:** Cruzamentos complexos de malha fiscal entre o EFD, NF-e e DCTF que geram autuações frequentes.
+        """
+        )
+
+    with col_s2:
+        st.success("✅ Como ficará na Reforma (Novo Modelo / SPED Digital)")
+        st.markdown(
+            """
+        - **Simplificação de Blocos:** Substituição das apurações fragmentadas por registros padronizados para a CBS e o IBS.
+        - **Apuração Centralizada:** Apuração unificada por CNPJ matriz ou estabelecimento, automatizando o saldo credor.
+        - **Split Payment Integrado:** O imposto é separado na transação financeira, reduzindo drasticamente a necessidade de preenchimentos manuais de guias.
+        - **Crédito Financeiro Pleno:** Extinção de teses jurídicas sobre insumos; qualquer aquisição gera crédito imediato.
+        """
+        )
+
+    st.markdown("---")
+    st.subheader("📋 Tabela Comparativa de Obrigações Acessórias")
+    st.markdown(
+        """
+        | Dimensão Fiscal | Cenário Atual (ICMS, PIS, Cofins, ISS) | Novo Cenário (Reforma Tributária - IVA Dual) |
+        | :--- | :--- | :--- |
+        | **Obrigações Acessórias** | Múltiplas declarações (SPED Fiscal, EFD-Contribuições, GIA, DEFIS) | Simplificação em ambiente nacional unificado (Declaração única CBS/IBS) |
+        | **Apuração de Créditos** | Regras restritivas e divergências entre Estados e União | **Não-cumulatividade financeira plena** e imediata |
+        | **Recolhimento** | Guias avulsas mensais por ente federativo | **Split Payment** (liquidação simultânea na transação financeira) |
+        | **Fiscalização** | Baseada em auditorias retroativas pós-fato via malha fiscal | Monitoramento em tempo real por infraestrutura digital integrada |
+        """
+    )
+
+elif opcao == "🤖 10. IA Consultora Oficial (Base de Dados do Governo)":
     st.header("🤖 Inteligência Artificial Especialista na Reforma Tributária")
     st.write(
         "Faça qualquer pergunta sobre as novas regras, alíquotas, transição até 2033, impactos setoriais "
@@ -471,7 +517,7 @@ elif opcao == "🤖 9. IA Consultora Oficial (Base de Dados do Governo)":
 
     pergunta_usuario = st.text_area(
         "Digite sua dúvida sobre a Reforma Tributária:",
-        placeholder="Ex: Como funciona a transição do IBS entre 2029 e 2032?"
+        placeholder="Ex: Como o SPED Fiscal e as obrigações acessórias mudarão com o IVA Dual?"
     )
 
     if st.button("Consultar IA Oficial"):
