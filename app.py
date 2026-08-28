@@ -18,7 +18,7 @@ st.markdown(
 
 st.divider()
 
-# Lista de módulos para os botões da barra lateral (Adicionada a aba 'Guia para o Contador')
+# Lista de módulos para os botões da barra lateral
 modulos = [
     "1. Visão Geral & Marco Constitucional",
     "2. IVA Dual (CBS e IBS) - PLP 68/2024",
@@ -29,7 +29,7 @@ modulos = [
     "📊 7. Simulador Interativo Setorial (Estilo Pro)",
     "🚢 8. Simulação de Importação & Tributação no Destino",
     "📈 9. Impactos no SPED Fiscal (Atual vs. Futuro)",
-    "🗂️ 10. Guia para o Contador (FAQ & Links Oficiais)",
+    "🗂️ 10. Guia para o Contador (50 FAQs & Links Oficiais)",
     "🤖 11. IA Consultora Oficial (Base de Dados do Governo)",
 ]
 
@@ -504,58 +504,86 @@ elif opcao == "📈 9. Impactos no SPED Fiscal (Atual vs. Futuro)":
         """
     )
 
-elif opcao == "🗂️ 10. Guia para o Contador (FAQ & Links Oficiais)":
-    st.header("🗂️ Guia Prático para o Contador: Perguntas, Respostas e Links Oficiais")
+elif opcao == "🗂️ 10. Guia para o Contador (50 FAQs & Links Oficiais)":
+    st.header("🗂️ Guia Definitivo para o Contador: 50 Perguntas & Respostas e Links Oficiais")
     st.write(
-        "Esta seção reúne orientações fundamentais em formato de perguntas e respostas (FAQ) para auxiliar profissionais "
-        "da contabilidade e consultores tributários na orientação estratégica de seus clientes, além de compilar os links oficiais "
-        "para verificação de atualizações normativas."
+        "Esta seção compõe um guia prático e completo com **50 perguntas e respostas essenciais** sobre a Reforma Tributária, "
+        "projetado para dar suporte direto a contadores, advogados tributaristas e gestores fiscais na condução da transição para o novo IVA Dual."
     )
 
     st.markdown("---")
-    st.subheader("❓ Perguntas e Respostas Frequentes (FAQ Contábil)")
+    st.subheader("📚 Perguntas Frequentes (FAQ Contábil - 50 Questões)")
 
-    with st.expander("1. O que muda de imediato para as empresas em 2026 (Ano-Teste)?"):
-        st.write(
-            "Em 2026, teremos a fase de testes operacionais da CBS (0,9%) e do IBS (0,1%). "
-            "As empresas deverão emitir notas fiscais adaptadas para destacar os novos tributos de forma teste, "
-            "mas **sem aumento real de carga tributária**, pois haverá compensação integral com os tributos federais antigos (PIS/Cofins). "
-            "É o momento ideal para testar sistemas de ERP e a infraestrutura de emissão."
-        )
+    faqs = [
+        ("1. O que é a Reforma Tributária aprovada pela EC 132/2023?", "A Emenda Constitucional nº 132/2023 substitui PIS, Cofins, IPI, ICMS e ISS por um IVA Dual composto pela CBS (federal) e pelo IBS (subnacional)."),
+        ("2. Qual o objetivo principal da transição para o princípio do destino?", "Garantir que a arrecadação pertença ao Estado e Município onde o consumidor final consome o bem ou serviço, eliminando a Guerra Fiscal de origem."),
+        ("3. Quando o novo sistema começa a valer efetivamente?", "O cronograma prevê testes em 2026, CBS plena em 2027, transição gradual do IBS de 2029 a 2032, e sistema 100% pleno em 2033."),
+        ("4. Como funciona o ano-teste de 2026?", "Início de testes operacionais com alíquotas de referência (0,9% CBS e 0,1% IBS) em notas fiscais, sem aumento de carga pois haverá compensação com tributos federais."),
+        ("5. O PIS e a Cofins serão extintos em qual ano?", "O PIS e a Cofins serão extintos e substituídos pela CBS a partir de 1 de janeiro de 2027."),
+        ("6. O que acontece com o IPI na reforma?", "O IPI será zerado para a maioria dos produtos a partir de 2027, mantendo proteção fiscal exclusiva para a Zona Franca de Manaus (ZFM)."),
+        ("7. O que é o Imposto Seletivo (IS)?", "O 'Imposto do Pecado', incidente sobre extração e produção de bens prejudiciais à saúde e ao meio ambiente (cigarros, bebidas alcoólicas, açucaradas, veículos poluentes e minérios)."),
+        ("8. As empresas do Simples Nacional são obrigadas a adotar o IVA Dual?", "Não. Continuam recolhendo pelo DAS, mas terão a opção de destacar CBS e IBS se precisarem fornecer créditos plenos a clientes B2B."),
+        ("9. O que é a não-cumulatividade financeira plena?", "Qualquer aquisição de bens ou serviços necessários à atividade da empresa gera crédito imediato de CBS e IBS, encerrando restrições do conceito rígido de insumo."),
+        ("10. Como funcionará o Split Payment?", "Liquidação financeira simultânea regulada pelo Banco Central onde o imposto é separado e repassado no exato momento do pagamento eletrônico (Pix, cartão, boleto)."),
+        ("11. Qual a alíquota padrão estimada do IVA Dual (CBS + IBS)?", "As estimativas técnicas preliminares do governo situam a alíquota combinada de referência em torno de 26,5%."),
+        ("12. O que é a Cesta Básica Nacional?", "Conjunto de alimentos essenciais (arroz, feijão, leite, carnes, ovos, pão e farinhas) com alíquota zero (0%) de CBS e IBS em todo o país."),
+        ("13. Quais setores possuem redução de 60% na alíquota?", "Medicamentos, serviços de saúde, dispositivos médicos, educação, transporte coletivo de passageiros e insumos agropecuários específicos."),
+        ("14. Como funciona o Cashback Tributário?", "Devolução parcial ou total de tributos (CBS e IBS) para famílias de baixa renda inscritas no CadÚnico, com foco em energia, gás e alimentos."),
+        ("15. O que é o Comitê Gestor do IBS (CG-IBS)?", "Órgão criado para unificar a arrecadação, fiscalização e distribuição do IBS entre Estados e Municípios com regras nacionais padronizadas."),
+        ("16. Como ficam as empresas de Lucro Presumido e Lucro Real?", "Migram da apuração cumulativa/não-cumulativa fragmentada tradicional para o modelo unificado de apuração centralizada do IVA Dual."),
+        ("17. O ISS municipal deixa de existir?", "Sim. O ISS será extinto progressivamente entre 2029 e 2033, sendo fundido no IBS junto com o ICMS."),
+        ("18. O ICMS estadual acaba quando?", "O ICMS será extinto de forma gradativa entre 2029 e 2032, encerrando sua vigência por completo em 31 de dezembro de 2032."),
+        ("19. Como serão tributadas as importações?", "Serão tributadas no destino pelas mesmas alíquotas de CBS e IBS aplicadas internamente, garantindo isonomia com a produção nacional."),
+        ("20. Há mudanças na exportação?", "Sim. Adota-se o princípio do destino puro, com desoneração completa das exportações (isenção de CBS/IBS e restituição de créditos anteriores)."),
+        ("21. Como o contador deve orientar clientes sobre o planejamento tributário?", "Revisando contratos de longo prazo, analisando a cadeia de suprimentos, avaliando créditos e homologando ERPs em 2026."),
+        ("22. O SPED Fiscal (EFD-ICMS/IPI) vai acabar?", "Sim, o modelo de blocos analíticos complexos será substituído por declarações eletrônicas unificadas e integradas para o IVA Dual."),
+        ("23. O que muda nas notas fiscais eletrônicas (NF-e)?", "As NF-es precisarão exibir os campos específicos e destacados de CBS, IBS e Imposto Seletivo conforme leiautes da Receita Federal e Comitê Gestor."),
+        ("24. Qual o papel da Receita Federal na CBS?", "A Receita Federal administrará, fiscalizará e arrecadará exclusivamente a CBS (tributo federal)."),
+        ("25. E quem administra o IBS?", "O IBS será administrado de forma compartilhada entre Estados, DF e Municípios por meio do Comitê Gestor do IBS."),
+        ("26. Haverá contencioso administrativo unificado?", "Sim, a reforma prevê instâncias administrativas paritárias e integradas para julgar litígios de CBS e IBS."),
+        ("27. Como ficam os benefícios fiscais de ICMS antigos (Guerra Fiscal)?", "Os incentivos de ICMS concedidos por estados serão gradativamente extintos conforme transição até 2032, com fundos de compensação."),
+        ("28. O que é o Fundo de Compensação de Benefícios Fiscais?", "Fundo financiado pela União para compensar perdas de empresas com incentivos de ICMS legais garantidos até 2032."),
+        ("29. Como o setor de serviços será afetado pela alíquota de 26,5%?", "Como serviços pagavam menos carga efetiva acumulada, a alíquota padrão pode elevar o custo se houver baixo aproveitamento de créditos em cadeia."),
+        ("30. Quais os impactos para o setor imobiliário?", "O setor imobiliário terá regras de transição específicas, alíquotas diferenciadas e redutores aplicáveis à locação, venda e loteamentos."),
+        ("31. Cooperativas terão tratamento diferenciado?", "Sim, o PLP 68/2024 traz regras de não incidência de CBS e IBS sobre atos cooperativos próprios e créditos específicos."),
+        ("32. Instituições financeiras (bancos) pagam IBS e CBS?", "Bancos e financeiras terão regras de apuração próprias baseadas na margem de intermediação financeira e receitas de serviços."),
+        ("33. O mercado de saúde suplementar tem redução?", "Sim, serviços de saúde e planos de saúde estão contemplados na redução de 60% da alíquota do IVA Dual."),
+        ("34. Medicamentos essenciais pagam imposto?", "Medicamentos da lista com alíquota reduzida terão desconto de 60%, e itens essenciais poderão ter alíquota zero."),
+        ("35. Veículos elétricos pagam Imposto Seletivo?", "O Imposto Seletivo visa desestimular externalidades negativas; veículos poluentes pagam mais, enquanto elétricos podem ter incentivos."),
+        ("36. Como o contador verifica atualizações oficiais?", "Através de portarias da Receita Federal, sites do Ministério da Fazenda e portais dos comitês gestores."),
+        ("37. Qual o impacto para o lucro presumido em serviços?", "Empresas de serviços no Lucro Presumido sem muitos créditos para recuperar podem ter elevação de carga tributária."),
+        ("38. O saldo credor acumulado de ICMS antigo será aproveitado?", "Saldos credores de ICMS acumulados até 31/12/2032 poderão ser compensados ou ressarcidos segundo regras de transição legais."),
+        ("39. O que é o princípio da neutralidade tributária?", "Princípio que dita que o imposto não deve influenciar as decisões econômicas, logísticas ou societárias das empresas."),
+        ("40. Como fica o ITCMD e o IPTU com a reforma?", "IPTU e ITCMD continuam com regras municipais/estaduais, sofrendo ajustes pontuais de base, mas sem virar IVA."),
+        ("41. O que é a base ampla de incidência do IBS/CBS?", "Praticamente a totalidade de bens e serviços de qualquer natureza entra no campo de incidência, extinguindo discussões mercadoria vs. serviço."),
+        ("42. O Simples Nacional perde clientes se não emitir nota com destaque?", "Sim, clientes B2B no Lucro Real/Presumido preferem fornecedores que gerem crédito, exigindo atenção do contador na opção de destaque."),
+        ("43. Como o Split Payment protege o caixa do empresário?", "Evita inadimplência e passivos de guias mensais, pois o imposto é descontado e repassado instantaneamente no pagamento."),
+        ("44. O que acontece com os honorários contábeis na transição?", "A demanda por consultoria contábil e estratégica aumentará expressivamente devido à complexidade da convivência dos sistemas."),
+        ("45. Qual o prazo para adequação de ERPs e sistemas?", "Imediato. O ano de 2026 exige homologação completa de softwares para suportar o Split Payment e o ano-teste."),
+        ("46. O que é a CBS?", "Contribuição Social sobre Bens e Serviços, tributo federal criado para substituir PIS, Cofins e parte do IPI."),
+        ("47. O que é o IBS?", "Imposto sobre Bens e Serviços, tributo subnacional (Estados e Municípios) criado para substituir ICMS e ISS."),
+        ("48. Como funcionará o ressarcimento de créditos do IVA Dual?", "O PLP 68 estabelece prazos céleres e automatizados de ressarcimento de saldos credores de IBS e CBS para preservar o caixa."),
+        ("49. Há penalidades para erros no destaque do IVA Dual em 2026?", "Durante o ano-teste de 2026, o foco é estritamente pedagógico e de validação sistêmica, havendo flexibilidade punitiva."),
+        ("50. Onde encontrar o texto legal consolidado das Leis Complementares?", "Nos portais oficiais da Câmara dos Deputados, do Senado Federal e na Receita Federal do Brasil.")
+    ]
 
-    with st.expander("2. O Simples Nacional perde vantagens com a Reforma?"):
-        st.write(
-            "Não obrigatoriamente. As empresas optantes pelo Simples Nacional continuam com a opção de recolher seus tributos unificados via DAS. "
-            "No entanto, se a empresa for fornecedora B2B (vende para outras empresas), ela poderá optar por destacar a CBS e o IBS "
-            "fora do DAS para permitir que seus clientes tomem créditos tributários integrais, evitando perder competitividade no mercado."
-        )
+    for pergunta, resposta in faqs:
+        with st.expander(pergunta):
+            st.write(resposta)
 
-    with st.expander("3. Como funcionará o aproveitamento de créditos no Lucro Real e Presumido?"):
-        st.write(
-            "O novo sistema adota a **não-cumulatividade financeira plena**. Isso significa que o conceito restrito de 'insumo' (que gerava enormes litígios no PIS/Cofins e ICMS) deixa de existir. "
-            "Qualquer aquisição de bens, serviços ou investimentos realizados pela empresa para a atividade operacional gerará crédito imediato de CBS e IBS."
-        )
+    st.markdown("---")
+    st.subheader("🔗 Links Oficiais para Verificação de Atualizações Normativas")
+    st.markdown(
+        """
+        Consulte exclusivamente as fontes oficiais do Governo Federal e do Congresso para acompanhar portarias e regulamentações:
 
-    with st.expander("4. O que é o Comitê Gestor do IBS e qual sua função?"):
-        st.write(
-            "O Comitê Gestor do IBS (CG-IBS) é o órgão criado para coordenar e uniformizar a arrecadação, a fiscalização e a distribuição "
-            "do IBS entre Estados, Distrito Federal e Municípios, garantindo regras nacionais padronizadas e evitando conflitos de competência federativa."
-        )
-
-    with st.markdown("---"):
-        st.subheader("🔗 Links Oficiais para Verificação de Atualizações Normativas")
-        st.markdown(
-            """
-            Para acompanhar em tempo real as portarias, regulamentações do Comitê Gestor, notas técnicas da Receita Federal 
-            e os desdobramentos dos Projetos de Lei Complementar, consulte exclusivamente as fontes oficiais do Governo Federal e do Congresso:
-
-            - 🏛️ **Portal oficial da Reforma Tributária (Governo Federal):** [gov.br/reformatributaria](https://www.gov.br/fazenda/pt-br/assuntos/reforma-tributaria)
-            - 📄 **Acompanhamento de Proposições e PLP 68/2024 (Câmara dos Deputados):** [Portal da Câmara - PLP 68/2024](https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2456475)
-            - ⚖️ **Emenda Constitucional nº 132/2023 (Texto Oficial no Planalto):** [EC 132/2023 - Planalto](https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm)
-            - 🏦 **Banco Central do Brasil (Regulamentação do Split Payment):** [Portal do Banco Central](https://www.bcb.gov.br)
-            - 📰 **Agência Senado (Acompanhamento de votações e debates):** [Agência Senado](https://www12.senado.leg.br/noticias)
-            """
-        )
+        - 🏛️ **Portal oficial da Reforma Tributária (Governo Federal):** [gov.br/reformatributaria](https://www.gov.br/fazenda/pt-br/assuntos/reforma-tributaria)
+        - 📄 **Acompanhamento de Proposições e PLP 68/2024 (Câmara dos Deputados):** [Portal da Câmara - PLP 68/2024](https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2456475)
+        - ⚖️ **Emenda Constitucional nº 132/2023 (Texto Oficial no Planalto):** [EC 132/2023 - Planalto](https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm)
+        - 🏦 **Banco Central do Brasil (Regulamentação do Split Payment):** [Portal do Banco Central](https://www.bcb.gov.br)
+        - 📰 **Agência Senado (Acompanhamento de votações e debates):** [Agência Senado](https://www12.senado.leg.br/noticias)
+        """
+    )
 
 elif opcao == "🤖 11. IA Consultora Oficial (Base de Dados do Governo)":
     st.header("🤖 Inteligência Artificial Especialista na Reforma Tributária")
