@@ -35,24 +35,35 @@ st.markdown(
 
 st.divider()
 
-# Menu lateral com todas as opções visíveis diretamente (sem precisar selecionar dropdown)
-st.sidebar.header("📋 Módulos de Análise")
-opcao = st.sidebar.radio(
-    "Navegue pelas abas:",
-    [
-        "1. Visão Geral & Marco Constitucional",
-        "2. IVA Dual (CBS e IBS) - PLP 68/2024",
-        "3. Imposto Seletivo (IS) & Externalidades",
-        "4. Cashback Tributário & Justiça Social",
-        "5. Split Payment & Tecnologia de Arrecadação",
-        "6. Cesta Básica & Alíquotas Reduzidas",
-        "📊 7. Simulador Interativo Setorial (Estilo Pro)",
-        "🚢 8. Simulação de Importação & Cotação do Dólar",
-        "🤖 9. IA Consultora Oficial (Base de Dados do Governo)",
-    ]
-)
+# Lista de módulos para os botões da barra lateral
+modulos = [
+    "1. Visão Geral & Marco Constitucional",
+    "2. IVA Dual (CBS e IBS) - PLP 68/2024",
+    "3. Imposto Seletivo (IS) & Externalidades",
+    "4. Cashback Tributário & Justiça Social",
+    "5. Split Payment & Tecnologia de Arrecadação",
+    "6. Cesta Básica & Alíquotas Reduzidas",
+    "📊 7. Simulador Interativo Setorial (Estilo Pro)",
+    "🚢 8. Simulação de Importação & Cotação do Dólar",
+    "🤖 9. IA Consultora Oficial (Base de Dados do Governo)",
+]
 
-# Conteúdo dinâmico baseado na escolha do usuário
+# Gerenciamento de estado para lembrar qual botão foi clicado
+if 'opcao_selecionada' not in st.session_state:
+    st.session_state.opcao_selecionada = modulos[0]
+
+st.sidebar.header("📋 Módulos de Análise")
+st.sidebar.markdown("---")
+
+# Renderiza cada aba como um botão interativo empilhado na lateral
+for mod in modulos:
+    # Destaca o botão ativo se necessário, ou renderiza botões limpos
+    if st.sidebar.button(mod, use_container_width=True):
+        st.session_state.opcao_selecionada = mod
+
+opcao = st.session_state.opcao_selecionada
+
+# Conteúdo dinâmico baseado na escolha do botão
 if opcao == "1. Visão Geral & Marco Constitucional":
     st.header("Visão Geral & Fundamentos Constitucionais (EC 132/2023)")
     st.write(
