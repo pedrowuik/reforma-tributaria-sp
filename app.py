@@ -26,7 +26,7 @@ modulos = [
     "4. Cashback Tributário & Justiça Social",
     "5. Split Payment & Tecnologia de Arrecadação",
     "6. Cesta Básica & Alíquotas Reduzidas",
-    "📊 7. Simulador Interativo Setorial (Estilo Pro)",
+    "📊 7. Simulador Interativo Setorial & Transição",
     "🚢 8. Simulação de Importação & Tributação no Destino",
     "📈 9. Impactos no SPED Fiscal (Atual vs. Futuro)",
     "🗂️ 10. Guia para o Contador (50 FAQs & Links Oficiais)",
@@ -474,26 +474,32 @@ elif opcao == "6. Cesta Básica & Alíquotas Reduzidas":
         )
     st.markdown("🔗 **Referência Legal Oficial:** [Câmara dos Deputados - Proposições](https://www.camara.leg.br)")
 
-elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
-    st.header("📊 Simulador Avançado de Carga Tributária por Setor e Faturamento")
+elif opcao == "📊 7. Simulador Interativo Setorial & Transição":
+    st.header("📊 Simulador Setorial com Cronograma de Transição e Modelo Híbrido do Simples Nacional")
     st.write(
-        "Simule em tempo real o impacto financeiro e tributário para diferentes segmentos empresariais em **São Paulo**, "
-        "comparando detalhadamente as alíquotas efetivas aplicadas no cenário atual versus a transição para o novo IVA Dual (CBS + IBS)."
+        "Selecione o **ano de referência da transição (2026 a 2033)** para recalcular a carga tributária considerando a convivência "
+        "proporcional entre os tributos antigos e o novo IVA Dual (CBS + IBS). Se a empresa for optante pelo **Simples Nacional**, "
+        "simule também o **Modelo Híbrido** (destaque opcional do IVA Dual)."
     )
 
-    st.subheader("⚙️ Configuração dos Dados da Empresa")
+    st.subheader("⚙️ Configuração dos Dados da Simulação")
     
-    col_s1, col_s2, col_s3 = st.columns(3)
+    col_s1, col_s2, col_s3, col_s4 = st.columns(4)
     with col_s1:
         faturamento_input = st.number_input(
             "Faturamento Bruto Mensal (R$)",
             min_value=100.0,
             max_value=50000000.0,
-            value=1000.0,
+            value=10000.0,
             step=500.0,
             format="%.2f"
         )
     with col_s2:
+        ano_cronograma = st.selectbox(
+            "Ano da Transição (Cronograma EC 132/23)",
+            [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033]
+        )
+    with col_s3:
         segmento = st.selectbox(
             "Segmento de Mercado / Atividade",
             [
@@ -505,7 +511,7 @@ elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
                 "Saúde / Clínicas Médicas"
             ]
         )
-    with col_s3:
+    with col_s4:
         regime_tributario = st.selectbox(
             "Regime Tributário Atual",
             [
@@ -515,82 +521,154 @@ elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
             ]
         )
 
+    # Simples Nacional Hybrid Model Option if Simples is selected
+    opcao_hibrido_simples = False
+    if regime_tributario == "Simples Nacional":
+        st.markdown("---")
+        st.markdown("🔀 **Opção Especial para Simples Nacional (Modelo Híbrido / B2B):**")
+        opcao_hibrido_simples = st.checkbox(
+            "Habilitar Destaque Opcional de CBS e IBS (Modelo Híbrido para permitir créditos a clientes B2B)",
+            value=False
+        )
+
     st.divider()
 
+    # Base tax calculation according to standard logic
     if "Comércio" in segmento:
         if regime_tributario == "Simples Nacional":
-            aliq_atual_str, base_aliq_atual = "4,00% (Anexo I - DAS)", 0.04
-            aliq_novo_str, base_aliq_novo = "4,00% (DAS Simplicidade) ou 26,5% (IVA Dual B2B opcional)", 0.04
+            base_aliq_atual = 0.04
+            aliq_atual_str = "4,00% (Anexo I - DAS)"
         elif regime_tributario == "Lucro Presumido":
-            aliq_atual_str, base_aliq_atual = "21,65% (PIS 0,65% + Cofins 3% + ICMS SP ~18%)", 0.2165
-            aliq_novo_str, base_aliq_novo = "26,50% (IVA Dual Padrão: CBS + IBS com créditos plenos)", 0.265
+            base_aliq_atual = 0.2165
+            aliq_atual_str = "21,65% (PIS 0,65% + Cofins 3% + ICMS SP ~18%)"
         else:
-            aliq_atual_str, base_aliq_atual = "27,25% (PIS 1,65% + Cofins 7,6% + ICMS SP ~18% com créditos restritos)", 0.2725
-            aliq_novo_str, base_aliq_novo = "26,50% (IVA Dual Padrão com Não-Cumulatividade Financeira Plena)", 0.265
-
+            base_aliq_atual = 0.2725
+            aliq_atual_str = "27,25% (PIS 1,65% + Cofins 7,6% + ICMS SP ~18%)"
     elif "Supermercado" in segmento:
         if regime_tributario == "Simples Nacional":
-            aliq_atual_str, base_aliq_atual = "3,50% (Anexo I - Comércio com itens essenciais)", 0.035
-            aliq_novo_str, base_aliq_novo = "3,50% (DAS) ou Alíquota Zero (Itens da Cesta Básica Nacional)", 0.035
+            base_aliq_atual = 0.035
+            aliq_atual_str = "3,50% (Anexo I - Comércio Essencial)"
         else:
-            aliq_atual_str, base_aliq_atual = "18,00% (Carga mista PIS/Cofins/ICMS)", 0.18
-            aliq_novo_str, base_aliq_novo = "12,00% (Média ponderada com desoneração da Cesta Básica)", 0.12
-
+            base_aliq_atual = 0.18
+            aliq_atual_str = "18,00% (Carga mista PIS/Cofins/ICMS)"
     elif "Restaurante" in segmento:
         if regime_tributario == "Simples Nacional":
-            aliq_atual_str, base_aliq_atual = "5,00% (Anexo I/III - Alimentação)", 0.05
-            aliq_novo_str, base_aliq_novo = "5,00% (DAS) ou IVA Dual setorial com redução", 0.05
+            base_aliq_atual = 0.05
+            aliq_atual_str = "5,00% (Anexo I/III - Alimentação)"
         else:
-            aliq_atual_str, base_aliq_atual = "14,00% (PIS/Cofins + ICMS reduzido em SP)", 0.14
-            aliq_novo_str, base_aliq_novo = "20,00% (IVA Dual ajustado para setor de alimentação)", 0.20
-
+            base_aliq_atual = 0.14
+            aliq_atual_str = "14,00% (PIS/Cofins + ICMS reduzido)"
     elif "Serviços" in segmento or "Tecnologia" in segmento:
         if regime_tributario == "Simples Nacional":
-            aliq_atual_str, base_aliq_atual = "6,00% (Anexo III inicial)", 0.06
-            aliq_novo_str, base_aliq_novo = "6,00% (DAS) ou destaque opcional do IVA Dual", 0.06
+            base_aliq_atual = 0.06
+            aliq_atual_str = "6,00% (Anexo III inicial)"
         elif regime_tributario == "Lucro Presumido":
-            aliq_atual_str, base_aliq_atual = "8,65% (PIS/Cofins + ISS SP 5%)", 0.0865
-            aliq_novo_str, base_aliq_novo = "26,50% (IVA Dual Padrão unificado)", 0.265
+            base_aliq_atual = 0.0865
+            aliq_atual_str = "8,65% (PIS/Cofins + ISS SP 5%)"
         else:
-            aliq_atual_str, base_aliq_atual = "14,25% (PIS/Cofins não cumulativos + ISS SP 5%)", 0.1425
-            aliq_novo_str, base_aliq_novo = "26,50% (IVA Dual Padrão com dedução irrestrita)", 0.265
-
+            base_aliq_atual = 0.1425
+            aliq_atual_str = "14,25% (PIS/Cofins + ISS SP 5%)"
     else: # Saúde
         if regime_tributario == "Simples Nacional":
-            aliq_atual_str, base_aliq_atual = "5,00% (Anexo III)", 0.05
-            aliq_novo_str, base_aliq_novo = "5,00% (DAS) ou alíquota reduzida", 0.05
+            base_aliq_atual = 0.05
+            aliq_atual_str = "5,00% (Anexo III)"
         else:
-            aliq_atual_str, base_aliq_atual = "8,00% (Carga mista de serviços de saúde)", 0.08
-            aliq_novo_str, base_aliq_novo = "10,60% (IVA Dual com redução de 60% garantida)", 0.106
+            base_aliq_atual = 0.08
+            aliq_atual_str = "8,00% (Carga mista saúde)"
+
+    # Transition weighting logic based on year
+    # IVA Dual standard full rate = 0.265 (26.5%)
+    # Old system weight vs New system weight per year
+    iva_padrao = 0.265
+    if segmento in ["Supermercado", "Cesta Básica"]:
+        iva_efetivo = iva_padrao * 0.45 # weighted reduction
+    elif segmento in ["Saúde / Clínicas Médicas", "Educação / Serviços Essenciais"]:
+        iva_efetivo = iva_padrao * 0.40 # 60% reduction
+    else:
+        iva_efetivo = iva_padrao
+
+    # Cronograma transition percentages for IBS/CBS coexistence
+    if ano_cronograma == 2026:
+        # Test year: CBS 0.9%, IBS 0.1% (total 1.0% test), old system 100% active
+        fator_antigo = 1.0
+        fator_novo = 0.0 # test is non-cumulative test
+        desc_ano_str = "2026: Ano-Teste Nacional (CBS 0,9% + IBS 0,1% em caráter de teste, mantendo sistema antigo integral)."
+        base_aliq_transicao = base_aliq_atual + 0.01
+    elif ano_cronograma == 2027:
+        # CBS full, PIS/Cofins/IPI extinct, ICMS/ISS 100% active
+        fator_antigo = 0.75 # partial old (ICMS/ISS)
+        fator_novo = 0.25   # CBS active
+        desc_ano_str = "2027: CBS Plena (100%) implantada | Extinção de PIS, Cofins e IPI | ICMS e ISS ainda 100% vigentes."
+        base_aliq_transicao = (0.28 * 0.25) + (base_aliq_atual * 0.75)
+    elif ano_cronograma == 2028:
+        fator_antigo = 0.70
+        fator_novo = 0.30
+        desc_ano_str = "2028: Consolidação Federal e Manutenção dos tributos subnacionais antigos."
+        base_aliq_transicao = (iva_efetivo * 0.35) + (base_aliq_atual * 0.65)
+    elif ano_cronograma == 2029:
+        # IBS starts transition at 10%
+        fator_antigo = 0.60
+        fator_novo = 0.40
+        desc_ano_str = "2029: Início da Transição do IBS (10% IBS + 90% ICMS/ISS) + CBS Plena."
+        base_aliq_transicao = (iva_efetivo * 0.45) + (base_aliq_atual * 0.55)
+    elif ano_cronograma == 2030:
+        # IBS at 20%
+        fator_antigo = 0.50
+        fator_novo = 0.50
+        desc_ano_str = "2030: IBS a 20% + ICMS/ISS a 80% + CBS Plena."
+        base_aliq_transicao = (iva_efetivo * 0.55) + (base_aliq_atual * 0.45)
+    elif ano_cronograma == 2031:
+        # IBS at 30%
+        fator_antigo = 0.35
+        fator_novo = 0.65
+        desc_ano_str = "2031: IBS a 30% + ICMS/ISS a 70% + CBS Plena."
+        base_aliq_transicao = (iva_efetivo * 0.70) + (base_aliq_atual * 0.30)
+    elif ano_cronograma == 2032:
+        # IBS at 40%
+        fator_antigo = 0.20
+        fator_novo = 0.80
+        desc_ano_str = "2032: Fase Final da Transição (40% IBS + 60% ICMS/ISS) + CBS Plena."
+        base_aliq_transicao = (iva_efetivo * 0.85) + (base_aliq_atual * 0.15)
+    else: # 2033
+        # 100% New system
+        fator_antigo = 0.0
+        fator_novo = 1.0
+        desc_ano_str = "2033: Sistema 100% Pleno | Extinção total de ICMS e ISS | Vigência integral do IVA Dual (CBS + IBS)."
+        base_aliq_transicao = iva_efetivo
+
+    # Simples Nacional Hybrid adjustment
+    if regime_tributario == "Simples Nacional" and opcao_hibrido_simples:
+        desc_ano_str += " | [Modelo Híbrido Simples Ativo: Destaque opcional de IVA Dual aplicado]."
+        base_aliq_transicao = max(base_aliq_atual, iva_efetivo * 0.5) # Hybrid calculation approximation
 
     imposto_atual_val = faturamento_input * base_aliq_atual
-    imposto_novo_val = faturamento_input * base_aliq_novo
-    diferenca_valor = imposto_novo_val - imposto_atual_val
+    imposto_transicao_val = faturamento_input * base_aliq_transicao
+    diferenca_valor = imposto_transicao_val - imposto_atual_val
     percentual_variacao = (diferenca_valor / imposto_atual_val) * 100 if imposto_atual_val > 0 else 0
 
-    st.subheader(f"📊 Relatório de Simulação: {segmento} ({regime_tributario})")
+    st.info(f"📅 **Contexto do Ano Selecionado ({ano_cronograma}):** {desc_ano_str}")
 
-    st.markdown("### 🔍 Detalhamento das Alíquotas Efetivas Aplicadas:")
+    st.subheader(f"📊 Relatório de Simulação por Ano e Setor: {segmento}")
     col_alq1, col_alq2 = st.columns(2)
     with col_alq1:
-        st.info(f"**Alíquota no Cenário Atual:**\n\n`{aliq_atual_str}`")
+        st.info(f"**Carga Efetiva Atual (Referência):**\n\n`{aliq_atual_str}`")
     with col_alq2:
-        st.success(f"**Alíquota no Novo Modelo (Reforma):**\n\n`{aliq_novo_str}`")
+        st.success(f"**Carga Efetiva Estimada para o Ano {ano_cronograma}:**\n\n`{(base_aliq_transicao)*100:.2f}% (Modelo de Transição)`")
 
     st.divider()
 
     col_res1, col_res2, col_res3 = st.columns(3)
     with col_res1:
         st.metric(
-            label="Carga Tributária Atual (R$)",
+            label="Carga Tributária Atual (Base)",
             value=f"R$ {imposto_atual_val:,.2f}",
             delta=f"Efetiva: {(base_aliq_atual)*100:.2f}%"
         )
     with col_res2:
         st.metric(
-            label="Nova Carga (Reforma Tributária)",
-            value=f"R$ {imposto_novo_val:,.2f}",
-            delta=f"Efetiva: {(base_aliq_novo)*100:.2f}%",
+            label=f"Carga Estimada em {ano_cronograma}",
+            value=f"R$ {imposto_transicao_val:,.2f}",
+            delta=f"Efetiva: {(base_aliq_transicao)*100:.2f}%",
             delta_color="off"
         )
     with col_res3:
