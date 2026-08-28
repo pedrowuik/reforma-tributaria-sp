@@ -18,7 +18,7 @@ st.markdown(
 
 st.divider()
 
-# Lista de módulos para os botões da barra lateral
+# Lista de módulos para os botões da barra lateral (Adicionada a aba 'Guia para o Contador')
 modulos = [
     "1. Visão Geral & Marco Constitucional",
     "2. IVA Dual (CBS e IBS) - PLP 68/2024",
@@ -29,7 +29,8 @@ modulos = [
     "📊 7. Simulador Interativo Setorial (Estilo Pro)",
     "🚢 8. Simulação de Importação & Tributação no Destino",
     "📈 9. Impactos no SPED Fiscal (Atual vs. Futuro)",
-    "🤖 10. IA Consultora Oficial (Base de Dados do Governo)",
+    "🗂️ 10. Guia para o Contador (FAQ & Links Oficiais)",
+    "🤖 11. IA Consultora Oficial (Base de Dados do Governo)",
 ]
 
 # Gerenciamento de estado para lembrar qual botão foi clicado
@@ -503,7 +504,60 @@ elif opcao == "📈 9. Impactos no SPED Fiscal (Atual vs. Futuro)":
         """
     )
 
-elif opcao == "🤖 10. IA Consultora Oficial (Base de Dados do Governo)":
+elif opcao == "🗂️ 10. Guia para o Contador (FAQ & Links Oficiais)":
+    st.header("🗂️ Guia Prático para o Contador: Perguntas, Respostas e Links Oficiais")
+    st.write(
+        "Esta seção reúne orientações fundamentais em formato de perguntas e respostas (FAQ) para auxiliar profissionais "
+        "da contabilidade e consultores tributários na orientação estratégica de seus clientes, além de compilar os links oficiais "
+        "para verificação de atualizações normativas."
+    )
+
+    st.markdown("---")
+    st.subheader("❓ Perguntas e Respostas Frequentes (FAQ Contábil)")
+
+    with st.expander("1. O que muda de imediato para as empresas em 2026 (Ano-Teste)?"):
+        st.write(
+            "Em 2026, teremos a fase de testes operacionais da CBS (0,9%) e do IBS (0,1%). "
+            "As empresas deverão emitir notas fiscais adaptadas para destacar os novos tributos de forma teste, "
+            "mas **sem aumento real de carga tributária**, pois haverá compensação integral com os tributos federais antigos (PIS/Cofins). "
+            "É o momento ideal para testar sistemas de ERP e a infraestrutura de emissão."
+        )
+
+    with st.expander("2. O Simples Nacional perde vantagens com a Reforma?"):
+        st.write(
+            "Não obrigatoriamente. As empresas optantes pelo Simples Nacional continuam com a opção de recolher seus tributos unificados via DAS. "
+            "No entanto, se a empresa for fornecedora B2B (vende para outras empresas), ela poderá optar por destacar a CBS e o IBS "
+            "fora do DAS para permitir que seus clientes tomem créditos tributários integrais, evitando perder competitividade no mercado."
+        )
+
+    with st.expander("3. Como funcionará o aproveitamento de créditos no Lucro Real e Presumido?"):
+        st.write(
+            "O novo sistema adota a **não-cumulatividade financeira plena**. Isso significa que o conceito restrito de 'insumo' (que gerava enormes litígios no PIS/Cofins e ICMS) deixa de existir. "
+            "Qualquer aquisição de bens, serviços ou investimentos realizados pela empresa para a atividade operacional gerará crédito imediato de CBS e IBS."
+        )
+
+    with st.expander("4. O que é o Comitê Gestor do IBS e qual sua função?"):
+        st.write(
+            "O Comitê Gestor do IBS (CG-IBS) é o órgão criado para coordenar e uniformizar a arrecadação, a fiscalização e a distribuição "
+            "do IBS entre Estados, Distrito Federal e Municípios, garantindo regras nacionais padronizadas e evitando conflitos de competência federativa."
+        )
+
+    with st.markdown("---"):
+        st.subheader("🔗 Links Oficiais para Verificação de Atualizações Normativas")
+        st.markdown(
+            """
+            Para acompanhar em tempo real as portarias, regulamentações do Comitê Gestor, notas técnicas da Receita Federal 
+            e os desdobramentos dos Projetos de Lei Complementar, consulte exclusivamente as fontes oficiais do Governo Federal e do Congresso:
+
+            - 🏛️ **Portal oficial da Reforma Tributária (Governo Federal):** [gov.br/reformatributaria](https://www.gov.br/fazenda/pt-br/assuntos/reforma-tributaria)
+            - 📄 **Acompanhamento de Proposições e PLP 68/2024 (Câmara dos Deputados):** [Portal da Câmara - PLP 68/2024](https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2456475)
+            - ⚖️ **Emenda Constitucional nº 132/2023 (Texto Oficial no Planalto):** [EC 132/2023 - Planalto](https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm)
+            - 🏦 **Banco Central do Brasil (Regulamentação do Split Payment):** [Portal do Banco Central](https://www.bcb.gov.br)
+            - 📰 **Agência Senado (Acompanhamento de votações e debates):** [Agência Senado](https://www12.senado.leg.br/noticias)
+            """
+        )
+
+elif opcao == "🤖 11. IA Consultora Oficial (Base de Dados do Governo)":
     st.header("🤖 Inteligência Artificial Especialista na Reforma Tributária")
     st.write(
         "Faça qualquer pergunta sobre as novas regras, alíquotas, transição até 2033, impactos setoriais "
@@ -517,7 +571,7 @@ elif opcao == "🤖 10. IA Consultora Oficial (Base de Dados do Governo)":
 
     pergunta_usuario = st.text_area(
         "Digite sua dúvida sobre a Reforma Tributária:",
-        placeholder="Ex: Como o SPED Fiscal e as obrigações acessórias mudarão com o IVA Dual?"
+        placeholder="Ex: Quais são as principais recomendações contábeis para a transição em 2026?"
     )
 
     if st.button("Consultar IA Oficial"):
