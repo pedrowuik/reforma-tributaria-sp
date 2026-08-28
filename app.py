@@ -26,12 +26,13 @@ modulos = [
     "4. Cashback Tributário & Justiça Social",
     "5. Split Payment & Tecnologia de Arrecadação",
     "6. Cesta Básica & Alíquotas Reduzidas",
-    "🏠 7. Reforma Tributária em Aluguéis de Imóveis",
-    "📊 8. Simulador Interativo Setorial & Transição",
-    "🚢 9. Simulação de Importação & Tributação no Destino",
-    "📈 10. Impactos no SPED Fiscal (Atual vs. Futuro)",
-    "🗂️ 11. Guia para o Contador (50 FAQs & Links Oficiais)",
-    "🤖 12. IA Consultora Oficial (Base de Dados do Governo)",
+    "🏠 7. Aluguéis de Imóveis na Reforma",
+    "📜 8. Herança & Doação (ITCMD)",
+    "📊 9. Simulador Interativo Setorial & Transição",
+    "🚢 10. Simulação de Importação & Tributação no Destino",
+    "📈 11. Impactos no SPED Fiscal (Atual vs. Futuro)",
+    "🗂️ 12. Guia para o Contador (50 FAQs & Links Oficiais)",
+    "🤖 13. IA Consultora Oficial (Base de Dados do Governo)",
 ]
 
 # Gerenciamento de estado para lembrar qual botão foi clicado
@@ -475,19 +476,63 @@ elif opcao == "6. Cesta Básica & Alíquotas Reduzidas":
         )
     st.markdown("🔗 **Referência Legal Oficial:** [Câmara dos Deputados - Proposições](https://www.camara.leg.br)")
 
-elif opcao == "🏠 7. Reforma Tributária em Aluguéis de Imóveis":
+elif opcao == "🏠 7. Aluguéis de Imóveis na Reforma":
     st.header("🏠 Reforma Tributária: Impactos nos Aluguéis de Imóveis (Residencial e Comercial)")
     st.write(
-        "A locação de bens imóveis (próprios ou de terceiros) foi enquadrada na base ampla do IVA Dual (CBS e IBS). "
-        "No entanto, o PLP 68/2024 estabeleceu **redutores de alíquota expressivos (redução de 60%)** para locações imobiliárias, "
-        "buscando proteger o mercado imobiliário e evitar saltos expressivos nos preços dos aluguéis."
+        "A locação de bens imóveis foi enquadrada na base ampla do IVA Dual, porém o PLP 68/2024 garantiu "
+        "um **redutor de alíquota de 60%**, reduzindo o impacto sobre locatários e proprietários."
     )
 
     st.markdown(
         """
-    - **Incidência Ampla:** Aluguéis comerciais e residenciais passam a integrar o conceito de operações onerosas de bens e direitos.
-    - **Redução de 60% na Alíquota (Art. 305+ do PLP 68/2024):** Aplicação de redutor que reduz a alíquota padrão do IVA Dual de ~26,5% para aproximadamente **10,6%**.
-    - **Locação Residencial vs. Comercial:** Locatários comerciais (PJ no Lucro Real/Presumido) poderão aproveitar créditos de IBS e CBS, enquanto locações residenciais para consumidor final contam com o redutor mas sem geração de crédito b2b recuperável.
+    - **Incidência Ampla:** Aluguéis comerciais e residenciais integrados ao IVA Dual (CBS e IBS).
+    - **Redução de 60% na Alíquota:** Alíquota efetiva reduzida para cerca de **10,6%**.
+    - **Crédito B2B:** Empresas locatárias de imóveis comerciais podem aproveitar créditos do IVA pago no aluguel.
+    """
+    )
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.error("❌ Como era")
+        st.markdown("- Tributação difusa por ISS em alguns municípios ou tributação de rendimentos de aluguel por Carnê-Leão e IRPJ.")
+    with col2:
+        st.success("✅ Como vai ficar")
+        st.markdown("- Tributação padronizada por CBS/IBS com redutor setorial de 60% e crédito financeiro para empresas.")
+
+    st.markdown("---")
+    st.subheader("🏢 Impactos Práticos na Gestão das Empresas")
+    col_e1, col_e2 = st.columns(2)
+    with col_e1:
+        st.success("🟢 Positivos")
+        st.markdown("- **Redutor Garantido:** Alíquota suavizada em 60%, protegendo o mercado de locação de saltos abusivos na carga.")
+    with col_e2:
+        st.error("🔴 Negativos")
+        st.markdown("- **Repactuação Contratual:** Necessidade de revisão de contratos de longo prazo firmados por pessoas físicas e jurídicas.")
+
+    st.markdown("---")
+    st.subheader("📚 Impactos Práticos na Rotina da Contabilidade")
+    col_c1, col_c2 = st.columns(2)
+    with col_c1:
+        st.success("🟢 Positivos")
+        st.markdown("- **Padronização Nacional:** Fim das alíquotas municipais de ISS díspares para locações comerciais.")
+    with col_c2:
+        st.error("🔴 Negativos")
+        st.markdown("- **Revisão de Portfólio Patrimonial:** Auditoria exaustiva em holdings e contratos de aluguel vigentes.")
+    st.markdown("🔗 **Referência Legal Oficial:** [PLP 68/2024 - Setor Imobiliário](https://www.camara.leg.br)")
+
+elif opcao == "📜 8. Herança & Doação (ITCMD)":
+    st.header("📜 Reforma Tributária: Heranças e Doações (ITCMD)")
+    st.write(
+        "A Reforma Tributária (EC 132/2023) introduziu mudanças fundamentais no **ITCMD (Imposto sobre Transmissão Causa Mortis e Doação)**, "
+        "com foco em combater a elisão fiscal de grandes patrimônios, estabelecer alíquotas progressivas obrigatórias e disciplinar "
+        "a incidência em transmissões internacionais e planos de previdência (PGBL/VGBL)."
+    )
+
+    st.markdown(
+        """
+    - **Progressividade Obrigatória (Art. 155, § 1º, VI da CF/88):** Os Estados e o Distrito Federal passam a ser obrigados a adotar alíquotas progressivas no ITCMD, onde quem recebe heranças ou doações de maior valor paga proporcionalmente mais.
+    - **Competência na Transmissão no Exterior:** O imposto passa a ser devido ao Estado onde era domiciliado o de cujus (em heranças) ou onde reside o donatário/bens (em doações), resolvendo conflitos entre estados.
+    - **Previdência Privada (PGBL/VGBL):** Discussões acaloradas sobre a incidência de ITCMD em planos de previdência com caráter de transmissão de riqueza (sucessória).
     """
     )
 
@@ -496,36 +541,38 @@ elif opcao == "🏠 7. Reforma Tributária em Aluguéis de Imóveis":
         st.error("❌ Como era")
         st.markdown(
             """
-        - Incidência difusa de ISS (em alguns municípios para locação de espaços com serviços) ou tributação via Carnê-Leão / IRPJ (Lucro Presumido/Real para administradoras).
-        - Complexidade em holdings patrimoniais e fundos imobiliários (FIIs) com regras mistas de tributação de rendimentos e aluguéis.
+        - Alíquotas proporcionais fixas em muitos estados (ex: 4% para qualquer valor).
+        - Conflitos interestaduais severos sobre a arrecadação de bens situados no exterior ou herdeiros fora do domicílio.
+        - Lacunas normativas sobre a transmissão de planos de previdência privada (VGBL/PGBL) como ferramenta de planejamento sucessório sem ITCMD.
         """
         )
     with col2:
         st.success("✅ Como vai ficar")
         st.markdown(
             """
-        - Tributação padronizada por CBS e IBS com **redução de 60%** na alíquota.
-        - Crédito financeiro garantido para empresas locatárias (comerciais), otimizando o custo operacional de escritórios, galpões e lojas.
+        - **Tabela Progressiva Nacional:** Alíquotas escalonadas de acordo com o montante transmitido (chegando ao teto estipulado pelo Senado).
+        - **Regras Claras para Exterior:** Fim de brechas jurídicas de inventários internacionais.
+        - **Maior Tributação Sucessória:** Aperfeiçoamento do cerco a planejamentos sucessórios agressivos via holdings e seguros/previdência.
         """
         )
 
     st.markdown("---")
-    st.subheader("🏢 Impactos Práticos na Gestão das Empresas e Proprietários")
+    st.subheader("🏢 Impactos Práticos na Gestão Patrimonial e Familiar")
     col_e1, col_e2 = st.columns(2)
     with col_e1:
         st.success("🟢 Positivos")
         st.markdown(
             """
-        - **Redutor Garantido de 60%:** Alíquota efetiva reduzida para cerca de 10,6%, evitando impacto esmagador no setor imobiliário.
-        - **Crédito Tributário para Empresas:** Empresas locatárias de imóveis comerciais recuperam créditos do IVA pago no aluguel.
+        - **Segurança Jurídica Interestadual:** Fim da guerra entre estados para definir quem tem direito de cobrar o ITCMD.
+        - **Transparência Regulatória:** Critérios claros para inventários e doações em vida com alíquotas definidas por faixa patrimonial.
         """
         )
     with col_e2:
         st.error("🔴 Negativos")
         st.markdown(
             """
-        - **Pressão sobre Aluguéis Residenciais:** Proprietários particulares pessoa física ou imobiliárias precisarão reajustar contratos para absorver a nova dinâmica tributária.
-        - **Burocracia em Contratos de Longo Prazo:** Necessidade de repactuação e revisão de cláusulas contratuais de locação firmadas antes da reforma.
+        - **Aumento da Carga Tributária em Grandes Heranças:** A progressividade eleva drasticamente o imposto sobre transmissões de patrimônios vultosos.
+        - **Fim de Estratégias Clássicas de Planejamento:** Restrições a instrumentos que antes blindavam inventários de incidências fiscais pesadas.
         """
         )
 
@@ -536,25 +583,24 @@ elif opcao == "🏠 7. Reforma Tributária em Aluguéis de Imóveis":
         st.success("🟢 Positivos")
         st.markdown(
             """
-        - **Padronização Contábil:** Unificação das regras de tributação de locações em âmbito nacional, substituindo legislações municipais de ISS díspares.
-        - **Oportunidade de Planejamento Patrimonial:** Reorganização estratégica de holdings imobiliárias e carteiras de investimento (FIIs).
+        - **Alta Demanda Consultiva:** O contador e o planejador patrimonial tornam-se essenciais para reestruturar holdings familiares e testamentos.
+        - **Previsibilidade de Cálculo:** Tabelas progressivas padronizadas dentro de cada unidade federativa.
         """
         )
     with col_c2:
         st.error("🔴 Negativos")
         st.markdown(
             """
-        - **Revisão Contratual Extensa:** Trabalho exaustivo de auditoria e revisão de centenas de contratos de locação comercial e residencial vigentes.
-        - **Controle de Créditos para PJ:** Acompanhamento rigoroso do aproveitamento de créditos de IBS/CBS por empresas locatárias.
+        - **Complexidade em Inventários Pendentes:** Conflito de leis estaduais durante o período de adaptação das assembleias legislativas locais.
+        - **Acompanhamento de Novas Súmulas:** Necessidade de monitoramento constante de decisões do STF sobre previdência privada e ITCMD.
         """
         )
-    st.markdown("🔗 **Referência Legal Oficial:** [PLP 68/2024 - Tratamento do Setor Imobiliário](https://www.camara.leg.br)")
+    st.markdown("🔗 **Referência Legal Oficial:** [Emenda Constitucional nº 132/2023 - Regras do ITCMD](https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm)")
 
-elif opcao == "📊 8. Simulador Interativo Setorial & Transição":
+elif opcao == "📊 9. Simulador Interativo Setorial & Transição":
     st.header("📊 Simulador Setorial com Cronograma de Transição e Aluguel de Imóveis")
     st.write(
-        "Selecione o **ano de referência da transição (2026 a 2033)** e escolha o setor **Aluguel / Locação de Imóveis** "
-        "para simular o impacto com a **redução de 60%** garantida pelo PLP 68/2024."
+        "Selecione o **ano de referência da transição (2026 a 2033)** e escolha o setor desejado para simular a carga tributária."
     )
 
     st.subheader("⚙️ Configuração dos Dados da Simulação")
@@ -562,10 +608,10 @@ elif opcao == "📊 8. Simulador Interativo Setorial & Transição":
     col_s1, col_s2, col_s3, col_s4 = st.columns(4)
     with col_s1:
         faturamento_input = st.number_input(
-            "Valor do Aluguel Mensal (R$)",
+            "Faturamento ou Valor Base Mensal (R$)",
             min_value=100.0,
             max_value=50000000.0,
-            value=5000.0,
+            value=10000.0,
             step=500.0,
             format="%.2f"
         )
@@ -573,7 +619,7 @@ elif opcao == "📊 8. Simulador Interativo Setorial & Transição":
         ano_cronograma = st.selectbox(
             "Ano da Transição (Cronograma EC 132/23)",
             [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033],
-            key="ano_trans_sim7"
+            key="ano_trans_sim9"
         )
     with col_s3:
         segmento = st.selectbox(
@@ -586,26 +632,25 @@ elif opcao == "📊 8. Simulador Interativo Setorial & Transição":
                 "Prestação de Serviços (Geral / Escritório)",
                 "Tecnologia / Software (SaaS)",
                 "Saúde / Clínicas Médicas"
-            ]
+            ],
+            key="seg_sim9"
         )
     with col_s4:
         regime_tributario = st.selectbox(
-            "Regime Tributário Atual / Locador",
+            "Regime Tributário Atual",
             [
-                "Pessoa Física / Carnê-Leão / Imobiliária",
                 "Simples Nacional",
                 "Lucro Presumido",
                 "Lucro Real"
             ],
-            key="reg_sim7"
+            key="reg_sim9"
         )
 
     st.divider()
 
-    # Base tax calculation
     if "Aluguel" in segmento:
-        base_aliq_atual = 0.05 # Média de ISS/IRPJ tradicional sobre locação
-        aliq_atual_str = "5,00% (Média Histórica / ISS ou IRPJ Administradora)"
+        base_aliq_atual = 0.05
+        aliq_atual_str = "5,00% (Média Histórica / Locação)"
     elif "Comércio" in segmento:
         base_aliq_atual = 0.2165 if regime_tributario == "Lucro Presumido" else 0.04
         aliq_atual_str = "21,65% (Lucro Presumido) ou 4% (Simples)"
@@ -622,10 +667,9 @@ elif opcao == "📊 8. Simulador Interativo Setorial & Transição":
         base_aliq_atual = 0.08
         aliq_atual_str = "8,00% (Carga mista saúde)"
 
-    # Transition weighting logic
     iva_padrao = 0.265
     if "Aluguel" in segmento:
-        iva_efetivo = iva_padrao * 0.40 # Redução de 60% prevista no PLP 68 (~10.6%)
+        iva_efetivo = iva_padrao * 0.40
     elif segmento in ["Supermercado"]:
         iva_efetivo = iva_padrao * 0.45
     elif segmento in ["Saúde / Clínicas Médicas"]:
@@ -633,38 +677,30 @@ elif opcao == "📊 8. Simulador Interativo Setorial & Transição":
     else:
         iva_efetivo = iva_padrao
 
-    # Cronograma transition percentages
     if ano_cronograma == 2026:
-        fator_antigo = 1.0
-        fator_novo = 0.0
-        desc_ano_str = "2026: Ano-Teste Nacional (CBS 0,9% + IBS 0,1% em caráter de teste)."
         base_aliq_transicao = base_aliq_atual + 0.01
+        desc_ano_str = "2026: Ano-Teste Nacional (CBS 0,9% + IBS 0,1%)."
     elif ano_cronograma == 2027:
-        fator_antigo = 0.75
-        fator_novo = 0.25
-        desc_ano_str = "2027: CBS Plena (100%) implantada | Extinção de PIS/Cofins/IPI."
-        base_aliq_transicao = (0.28 * 0.25) + (base_aliq_atual * 0.75) if "Aluguel" not in segmento else (iva_efetivo * 0.25) + (base_aliq_atual * 0.75)
+        base_aliq_transicao = (iva_efetivo * 0.25) + (base_aliq_atual * 0.75) if "Aluguel" in segmento else (0.28 * 0.25) + (base_aliq_atual * 0.75)
+        desc_ano_str = "2027: CBS Plena (100%) | Extinção de PIS/Cofins/IPI."
     elif ano_cronograma == 2028:
         base_aliq_transicao = (iva_efetivo * 0.35) + (base_aliq_atual * 0.65)
         desc_ano_str = "2028: Consolidação Federal e Manutenção dos tributos antigos."
     elif ano_cronograma == 2029:
         base_aliq_transicao = (iva_efetivo * 0.45) + (base_aliq_atual * 0.55)
-        desc_ano_str = "2029: Início da Transição do IBS (10% IBS + 90% anteriores) + CBS Plena."
+        desc_ano_str = "2029: Início da Transição do IBS (10% IBS + 90% antigos)."
     elif ano_cronograma == 2030:
         base_aliq_transicao = (iva_efetivo * 0.55) + (base_aliq_atual * 0.45)
-        desc_ano_str = "2030: IBS a 20% + Tributos antigos a 80% + CBS Plena."
+        desc_ano_str = "2030: IBS a 20% + Tributos antigos a 80%."
     elif ano_cronograma == 2031:
         base_aliq_transicao = (iva_efetivo * 0.70) + (base_aliq_atual * 0.30)
-        desc_ano_str = "2031: IBS a 30% + Tributos antigos a 70% + CBS Plena."
+        desc_ano_str = "2031: IBS a 30% + Tributos antigos a 70%."
     elif ano_cronograma == 2032:
         base_aliq_transicao = (iva_efetivo * 0.85) + (base_aliq_atual * 0.15)
-        desc_ano_str = "2032: Fase Final da Transição (40% IBS + 60% antigos) + CBS Plena."
-    else: # 2033
+        desc_ano_str = "2032: Fase Final da Transição (40% IBS + 60% antigos)."
+    else:
         base_aliq_transicao = iva_efetivo
-        desc_ano_str = "2033: Sistema 100% Pleno | Vigência integral do IVA Dual com redutor setorial."
-
-    if "Aluguel" in segmento:
-        desc_ano_str += " | [Redução de 60% aplicada conforme PLP 68/2024 para locação imobiliária]."
+        desc_ano_str = "2033: Sistema 100% Pleno | Vigência integral do IVA Dual."
 
     imposto_atual_val = faturamento_input * base_aliq_atual
     imposto_transicao_val = faturamento_input * base_aliq_transicao
@@ -678,7 +714,7 @@ elif opcao == "📊 8. Simulador Interativo Setorial & Transição":
     with col_alq1:
         st.info(f"**Carga Efetiva Atual (Referência):**\n\n`{aliq_atual_str}`")
     with col_alq2:
-        st.success(f"**Carga Efetiva Estimada para o Ano {ano_cronograma}:**\n\n`{(base_aliq_transicao)*100:.2f}% (Com Redutor Setorial Aplicável)`")
+        st.success(f"**Carga Efetiva Estimada para o Ano {ano_cronograma}:**\n\n`{(base_aliq_transicao)*100:.2f}%`")
 
     st.divider()
 
@@ -704,7 +740,7 @@ elif opcao == "📊 8. Simulador Interativo Setorial & Transição":
             delta_color="inverse"
         )
 
-elif opcao == "🚢 9. Simulação de Importação & Tributação no Destino":
+elif opcao == "🚢 10. Simulação de Importação & Tributação no Destino":
     st.header("🚢 Simulação de Importação sob a Nova Reforma Tributária")
     st.write(
         "Simule a importação de mercadorias informando o valor diretamente em **Reais (R$)**. "
@@ -722,16 +758,17 @@ elif opcao == "🚢 9. Simulação de Importação & Tributação no Destino":
             max_value=50000000.0,
             value=5000.0,
             step=500.0,
-            format="%.2f"
+            format="%.2f",
+            key="cif_imp10"
         )
-        aliq_ii = st.slider("Alíquota do Imposto de Importação (II) (%)", 0.0, 50.0, 14.0, 1.0)
+        aliq_ii = st.slider("Alíquota do Imposto de Importação (II) (%)", 0.0, 50.0, 14.0, 1.0, key="ii_10")
     with col_imp2:
         regime_importador = st.selectbox(
             "Regime do Importador no Brasil",
             ["Lucro Real / Presumido (Gera Crédito de IBS/CBS)", "Simples Nacional / Consumidor Final (Sem Crédito)"],
-            key="regime_imp"
+            key="regime_imp10"
         )
-        st.info(f"🇧🇷 **Base de Cálculo:**\n\nValor CIF informado: **R$ {valor_cif_brl:,.2f}** (Valores calculados estritamente em moeda nacional).")
+        st.info(f"🇧🇷 **Base de Cálculo:**\n\nValor CIF informado: **R$ {valor_cif_brl:,.2f}** (Valores calculados em moeda nacional).")
 
     valor_ii = valor_cif_brl * (aliq_ii / 100.0)
     base_tributos_antiga = valor_cif_brl + valor_ii
@@ -768,7 +805,7 @@ elif opcao == "🚢 9. Simulação de Importação & Tributação no Destino":
             delta_color="normal"
         )
 
-elif opcao == "📈 10. Impactos no SPED Fiscal (Atual vs. Futuro)":
+elif opcao == "📈 11. Impactos no SPED Fiscal (Atual vs. Futuro)":
     st.header("📈 Impactos no SPED Fiscal: Como é vs. Como Ficará")
     st.write(
         "O SPED Fiscal (EFD-ICMS/IPI) e as apurações acessórias federais passam por uma transformação radical "
@@ -811,7 +848,7 @@ elif opcao == "📈 10. Impactos no SPED Fiscal (Atual vs. Futuro)":
         """
     )
 
-elif opcao == "🗂️ 11. Guia para o Contador (50 FAQs & Links Oficiais)":
+elif opcao == "🗂️ 12. Guia para o Contador (50 FAQs & Links Oficiais)":
     st.header("🗂️ Guia Definitivo para o Contador: 50 Perguntas & Respostas e Links Oficiais")
     st.write(
         "Esta seção compõe um guia prático e completo com **50 perguntas e respostas essenciais** sobre a Reforma Tributária, "
@@ -851,7 +888,7 @@ elif opcao == "🗂️ 11. Guia para o Contador (50 FAQs & Links Oficiais)":
         ("27. Como ficam os benefícios fiscais de ICMS antigos (Guerra Fiscal)?", "Os incentivos de ICMS concedidos por estados serão gradativamente extintos conforme transição até 2032, com fundos de compensação."),
         ("28. O que é o Fundo de Compensação de Benefícios Fiscais?", "Fundo financiado pela União para compensar perdas de empresas com incentivos de ICMS legais garantidos até 2032."),
         ("29. Como o setor de serviços será afetado pela alíquota de 26,5%?", "Como serviços pagavam menos carga efetiva acumulada, a alíquota padrão pode elevar o custo se houver baixo aproveitamento de créditos em cadeia."),
-        ("30. Quais os impactos para o setor imobiliário e aluguéis?", "O setor imobiliário e de locação terá alíquota reduzida em 60%, garantindo proteção regulatória e créditos para empresas locatárias."),
+        ("30. Quais os impactos para herança e doação (ITCMD)?", "O ITCMD passa a ter progressividade obrigatória em todos os estados, elevando alíquotas para grandes patrimônios e disciplinando transmissões no exterior."),
         ("31. Cooperativas terão tratamento diferenciado?", "Sim, o PLP 68/2024 traz regras de não incidência de CBS e IBS sobre atos cooperativos próprios e créditos específicos."),
         ("32. Instituições financeiras (bancos) pagam IBS e CBS?", "Bancos e financeiras terão regras de apuração próprias baseadas na margem de intermediação financeira e receitas de serviços."),
         ("33. O mercado de saúde suplementar tem redução?", "Sim, serviços de saúde e planos de saúde estão contemplados na redução de 60% da alíquota do IVA Dual."),
@@ -861,7 +898,7 @@ elif opcao == "🗂️ 11. Guia para o Contador (50 FAQs & Links Oficiais)":
         ("37. Qual o impacto para o lucro presumido em serviços?", "Empresas de serviços no Lucro Presumido sem muitos créditos para recuperar podem ter elevação de carga tributária."),
         ("38. O saldo credor acumulado de ICMS antigo será aproveitado?", "Saldos credores de ICMS acumulados até 31/12/2032 poderão ser compensados ou ressarcidos segundo regras de transição legais."),
         ("39. O que é o princípio da neutralidade tributária?", "Princípio que dita que o imposto não deve influenciar as decisões econômicas, logísticas ou societárias das empresas."),
-        ("40. Como fica o ITCMD e o IPTU com a reforma?", "IPTU e ITCMD continuam com regras municipais/estaduais, sofrendo ajustes pontuais de base, mas sem virar IVA."),
+        ("40. Como fica o ITCMD em previdência privada (PGBL/VGBL)?", "O ITCMD incide em transmissões sucessórias de previdência com caráter de transferência de riqueza, conforme regulamentações estaduais e jurisprudência."),
         ("41. O que é a base ampla de incidência do IBS/CBS?", "Praticamente a totalidade de bens e serviços de qualquer natureza entra no campo de incidência, extinguindo discussões mercadoria vs. serviço."),
         ("42. O Simples Nacional perde clientes se não emitir nota com destaque?", "Sim, clientes B2B no Lucro Real/Presumido preferem fornecedores que gerem crédito, exigindo atenção do contador na opção de destaque."),
         ("43. Como o Split Payment protege o caixa do empresário?", "Evita inadimplência e passivos de guias mensais, pois o imposto é descontado e repassado instantaneamente no pagamento."),
@@ -892,7 +929,7 @@ elif opcao == "🗂️ 11. Guia para o Contador (50 FAQs & Links Oficiais)":
         """
     )
 
-elif opcao == "🤖 12. IA Consultora Oficial (Base de Dados do Governo)":
+elif opcao == "🤖 13. IA Consultora Oficial (Base de Dados do Governo)":
     st.header("🤖 Inteligência Artificial Especialista na Reforma Tributária")
     st.write(
         "Faça qualquer pergunta sobre as novas regras, alíquotas, transição até 2033, impactos setoriais "
@@ -906,7 +943,7 @@ elif opcao == "🤖 12. IA Consultora Oficial (Base de Dados do Governo)":
 
     pergunta_usuario = st.text_area(
         "Digite sua dúvida sobre a Reforma Tributária:",
-        placeholder="Ex: Como a redução de 60% se aplica aos contratos de aluguel comercial?"
+        placeholder="Ex: Como funciona a progressividade do ITCMD nas doações e heranças?"
     )
 
     if st.button("Consultar IA Oficial"):
