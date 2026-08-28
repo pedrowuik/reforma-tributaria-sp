@@ -1,7 +1,5 @@
 import streamlit as st
 import os
-import urllib.request
-import json
 
 # Configuração da página
 st.set_page_config(
@@ -10,27 +8,12 @@ st.set_page_config(
     layout="wide",
 )
 
-# Função para buscar a cotação atual do dólar em tempo real via API pública
-@st.cache_data(ttl=3600)
-def obter_cotacao_dolar():
-    try:
-        url = "https://economia.awesomeapi.com.br/json/last/USD-BRL"
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urllib.request.urlopen(req, timeout=5) as response:
-            data = json.loads(response.read().decode())
-            cotacao = float(data['USDBRL']['bid'])
-            return cotacao
-    except Exception:
-        return 5.50
-
-cotacao_dolar_atual = obter_cotacao_dolar()
-
 # Título principal
 st.title("🇧🇷 Simulador Pratico - Reforma Tributaria - Pedro Marques")
 st.markdown(
     "Plataforma técnica baseada na **Emenda Constitucional nº 132/2023** e nos textos complementares "
-    "(**PLP nº 68/2024 e PLP nº 108/2024**). Ferramenta com análises jurídicas, detalhamento normativo, "
-    "cotação do dólar em tempo real e simulações numéricas integradas com inteligência artificial."
+    "(**PLP nº 68/2024 e PLP nº 108/2024**). Ferramenta com análises jurídicas, detalhamento normativo "
+    "e simulações numéricas integradas com inteligência artificial."
 )
 
 st.divider()
@@ -44,7 +27,7 @@ modulos = [
     "5. Split Payment & Tecnologia de Arrecadação",
     "6. Cesta Básica & Alíquotas Reduzidas",
     "📊 7. Simulador Interativo Setorial (Estilo Pro)",
-    "🚢 8. Simulação de Importação & Cotação do Dólar",
+    "🚢 8. Simulação de Importação & Tributação no Destino",
     "🤖 9. IA Consultora Oficial (Base de Dados do Governo)",
 ]
 
@@ -57,7 +40,6 @@ st.sidebar.markdown("---")
 
 # Renderiza cada aba como um botão interativo empilhado na lateral
 for mod in modulos:
-    # Destaca o botão ativo se necessário, ou renderiza botões limpos
     if st.sidebar.button(mod, use_container_width=True):
         st.session_state.opcao_selecionada = mod
 
@@ -100,6 +82,28 @@ if opcao == "1. Visão Geral & Marco Constitucional":
         - **Arrecadação no Destino:** O imposto pertence ao município e estado onde reside o adquirente final do produto ou serviço.
         """
         )
+
+    st.markdown("---")
+    st.subheader("📅 Cronograma Oficial de Transição (2026 a 2033)")
+    st.write(
+        "A implementação do novo sistema ocorre de forma gradual para permitir a adaptação tecnológica "
+        "dos contribuintes e a convivência controlada entre os tributos antigos e o novo IVA Dual:"
+    )
+
+    st.markdown(
+        """
+        | Ano / Período | Marco de Implementação / O que muda na prática | Tributos Envolvidos |
+        | :--- | :--- | :--- |
+        | **2026** | **Ano-Teste Nacional:** Início dos testes operacionais com alíquotas de referência para validação de sistemas e notas fiscais. | CBS (`0,9%`) e IBS (`0,1%`) |
+        | **2027** | **Entrada da CBS Plena e Fim do PIS/Cofins:** Extinção definitiva do PIS, da Cofins e do IPI (exceto Zona Franca de Manaus); início do Imposto Seletivo (IS). | CBS Cheia + Extinção de PIS/Cofins/IPI + Início do IS |
+        | **2028** | **Consolidação Federal e Ajustes:** Manutenção da CBS plena e ajustes normativos nas legislações complementares. | CBS Plena + Manutenção de ICMS/ISS |
+        | **2029** | **Início da Transição do IBS (10%):** Os estados e municípios começam a substituir progressivamente o ICMS e o ISS pelo IBS. | IBS (`10%`) + ICMS/ISS (`90%`) |
+        | **2030** | **Progressão do IBS (20%):** Aumento da participação do IBS e redução proporcional de ICMS e ISS. | IBS (`20%`) + ICMS/ISS (`80%`) |
+        | **2031** | **Aceleração da Transição (30%):** Continuidade da substituição gradual da arrecadação subnacional. | IBS (`30%`) + ICMS/ISS (`70%`) |
+        | **2032** | **Fase Final da Transição (40%):** Último ano de convivência mista entre os tributos estaduais/municipais antigos e o IBS. | IBS (`40%`) + ICMS/ISS (`60%`) |
+        | **2033** | **Sistema Pleno Vigente:** Extinção total e definitiva de ICMS e ISS. O IVA Dual (CBS + IBS) passa a vigorar integralmente no país. | Apenas CBS + IBS + Imposto Seletivo (Sistema 100% Pleno) |
+        """
+    )
 
     st.markdown("🔗 **Referência Legal Oficial:** [Emenda Constitucional nº 132/2023 - Planalto](https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm)")
 
@@ -384,25 +388,25 @@ elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
             delta_color="inverse"
         )
 
-elif opcao == "🚢 8. Simulação de Importação & Cotação do Dólar":
-    st.header("🚢 Simulação de Importação com Cotação do Dólar em Tempo Real")
+elif opcao == "🚢 8. Simulação de Importação & Tributação no Destino":
+    st.header("🚢 Simulação de Importação sob a Nova Reforma Tributária")
     st.write(
-        f"Esta ferramenta busca a cotação oficial do dólar americano (USD) atualizada da internet em tempo real. "
-        f"A taxa de câmbio vigente no momento é de **R$ {cotacao_dolar_atual:.4f}** por 1 USD."
+        "Simule a importação de mercadorias informando o valor diretamente em **Reais (R$)**. "
+        "A nova regra aduaneira aplica o princípio do destino e a unificação por IVA Dual (CBS + IBS)."
     )
 
     st.markdown("---")
-    st.subheader("🧮 Conversor de Moeda e Calculadora Aduaneira")
+    st.subheader("🧮 Calculadora Aduaneira em Reais (R$)")
 
     col_imp1, col_imp2 = st.columns(2)
 
     with col_imp1:
-        valor_usd = st.number_input(
-            "Valor da Mercadoria em Dólares (USD $)",
-            min_value=10.0,
-            max_value=1000000.0,
-            value=1000.0,
-            step=100.0,
+        valor_cif_brl = st.number_input(
+            "Valor Aduaneiro da Mercadoria (CIF em R$)",
+            min_value=100.0,
+            max_value=50000000.0,
+            value=5000.0,
+            step=500.0,
             format="%.2f"
         )
         aliq_ii = st.slider("Alíquota do Imposto de Importação (II) (%)", 0.0, 50.0, 14.0, 1.0)
@@ -413,8 +417,7 @@ elif opcao == "🚢 8. Simulação de Importação & Cotação do Dólar":
             ["Lucro Real / Presumido (Gera Crédito de IBS/CBS)", "Simples Nacional / Consumidor Final (Sem Crédito)"],
             key="regime_imp"
         )
-        valor_cif_brl = valor_usd * cotacao_dolar_atual
-        st.info(f"💵 **Conversão do Dólar:**\n\nUS$ {valor_usd:,.2f} equivalem a **R$ {valor_cif_brl:,.2f}** (Base CIF convertida a R$ {cotacao_dolar_atual:.4f}/USD).")
+        st.info(f"🇧🇷 **Base de Cálculo:**\n\nValor CIF informado: **R$ {valor_cif_brl:,.2f}** (Valores calculados estritamente em moeda nacional).")
 
     valor_ii = valor_cif_brl * (aliq_ii / 100.0)
     base_tributos_antiga = valor_cif_brl + valor_ii
@@ -468,7 +471,7 @@ elif opcao == "🤖 9. IA Consultora Oficial (Base de Dados do Governo)":
 
     pergunta_usuario = st.text_area(
         "Digite sua dúvida sobre a Reforma Tributária:",
-        placeholder="Ex: Como funciona a conversão de câmbio e a cobrança de CBS e IBS nas importações?"
+        placeholder="Ex: Como funciona a transição do IBS entre 2029 e 2032?"
     )
 
     if st.button("Consultar IA Oficial"):
