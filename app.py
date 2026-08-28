@@ -35,9 +35,10 @@ st.markdown(
 
 st.divider()
 
-# Menu lateral para escolher o tema
-opcao = st.sidebar.selectbox(
-    "Selecione o Módulo de Análise e Simulação:",
+# Menu lateral com todas as opções visíveis diretamente (sem precisar selecionar dropdown)
+st.sidebar.header("📋 Módulos de Análise")
+opcao = st.sidebar.radio(
+    "Navegue pelas abas:",
     [
         "1. Visão Geral & Marco Constitucional",
         "2. IVA Dual (CBS e IBS) - PLP 68/2024",
@@ -48,7 +49,7 @@ opcao = st.sidebar.selectbox(
         "📊 7. Simulador Interativo Setorial (Estilo Pro)",
         "🚢 8. Simulação de Importação & Cotação do Dólar",
         "🤖 9. IA Consultora Oficial (Base de Dados do Governo)",
-    ],
+    ]
 )
 
 # Conteúdo dinâmico baseado na escolha do usuário
@@ -150,19 +151,11 @@ elif opcao == "3. Imposto Seletivo (IS) & Externalidades":
 
     with col1:
         st.error("❌ Como era")
-        st.markdown(
-            """
-        - Tributação difusa pelo IPI e tributos estaduais sem uniformidade nacional de foco em saúde pública.
-        """
-        )
+        st.markdown("- Tributação difusa pelo IPI e tributos estaduais sem uniformidade nacional de foco em saúde pública.")
 
     with col2:
         st.success("✅ Como vai ficar")
-        st.markdown(
-            """
-        - Incidência monofásica federal calculada diretamente sobre o fator de nocividade (ex: teor de açúcar ou poluição).
-        """
-        )
+        st.markdown("- Incidência monofásica federal calculada diretamente sobre o fator de nocividade (ex: teor de açúcar ou poluição).")
 
     st.markdown("🔗 **Referência Legal Oficial:** [Senado Federal - Notícias e Textos Legais](https://www12.senado.leg.br)")
 
@@ -185,19 +178,11 @@ elif opcao == "4. Cashback Tributário & Justiça Social":
 
     with col1:
         st.error("❌ Como era")
-        st.markdown(
-            """
-        - Cidadãos de menor renda pagavam proporcionalmente a mesma alíquota de impostos indiretos que os mais ricos, sem restituição.
-        """
-        )
+        st.markdown("- Cidadãos de menor renda pagavam proporcionalmente a mesma alíquota de impostos indiretos que os mais ricos, sem restituição.")
 
     with col2:
         st.success("✅ Como vai ficar")
-        st.markdown(
-            """
-        - Devolução de até 100% da parcela federal (CBS) e percentual da parcela subnacional (IBS) diretamente na conta do cidadão.
-        """
-        )
+        st.markdown("- Devolução de até 100% da parcela federal (CBS) e percentual da parcela subnacional (IBS) diretamente na conta do cidadão.")
 
     st.markdown("🔗 **Referência Legal Oficial:** [Ministério da Fazenda - Cidadania Fiscal](https://www.gov.br/fazenda)")
 
@@ -220,19 +205,11 @@ elif opcao == "5. Split Payment & Tecnologia de Arrecadação":
 
     with col1:
         st.error("❌ Como era")
-        st.markdown(
-            """
-        - O lojista recebia o valor total da venda e recolhia o imposto dias ou semanas depois via guia, gerando riscos de inadimplência.
-        """
-        )
+        st.markdown("- O lojista recebia o valor total da venda e recolhia o imposto dias ou semanas depois via guia, gerando riscos de inadimplência.")
 
     with col2:
         st.success("✅ Como vai ficar")
-        st.markdown(
-            """
-        - Separação tributária em tempo real na maquininha ou gateway de pagamento, zerando a sonegação e gerando crédito imediato.
-        """
-        )
+        st.markdown("- Separação tributária em tempo real na maquininha ou gateway de pagamento, zerando a sonegação e gerando crédito imediato.")
 
     st.markdown("🔗 **Referência Legal Oficial:** [Banco Central do Brasil - Sistema de Pagamentos](https://www.bcb.gov.br)")
 
@@ -255,19 +232,11 @@ elif opcao == "6. Cesta Básica & Alíquotas Reduzidas":
 
     with col1:
         st.error("❌ Como era")
-        st.markdown(
-            """
-        - Alíquotas desorganizadas de PIS/Cofins e ICMS variando de estado para estado sobre alimentos e remédios.
-        """
-        )
+        st.markdown("- Alíquotas desorganizadas de PIS/Cofins e ICMS variando de estado para estado sobre alimentos e remédios.")
 
     with col2:
         st.success("✅ Como vai ficar")
-        st.markdown(
-            """
-        - Isenção absoluta (0%) padronizada em todo o território nacional para os alimentos essenciais da Cesta Básica.
-        """
-        )
+        st.markdown("- Isenção absoluta (0%) padronizada em todo o território nacional para os alimentos essenciais da Cesta Básica.")
 
     st.markdown("🔗 **Referência Legal Oficial:** [Câmara dos Deputados - Proposições](https://www.camara.leg.br)")
 
@@ -319,105 +288,49 @@ elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
 
     if "Comércio" in segmento:
         if regime_tributario == "Simples Nacional":
-            aliq_atual_str = "4,00% (Anexo I - DAS)"
-            base_aliq_atual = 0.04
-            aliq_novo_str = "4,00% (DAS Simplicidade) ou 26,5% (IVA Dual B2B opcional)"
-            base_aliq_novo = 0.04
+            aliq_atual_str, base_aliq_atual = "4,00% (Anexo I - DAS)", 0.04
+            aliq_novo_str, base_aliq_novo = "4,00% (DAS Simplicidade) ou 26,5% (IVA Dual B2B opcional)", 0.04
         elif regime_tributario == "Lucro Presumido":
-            aliq_atual_str = "21,65% (PIS 0,65% + Cofins 3% + ICMS SP ~18%)"
-            base_aliq_atual = 0.2165
-            aliq_novo_str = "26,50% (IVA Dual Padrão: CBS + IBS com créditos plenos)"
-            base_aliq_novo = 0.265
+            aliq_atual_str, base_aliq_atual = "21,65% (PIS 0,65% + Cofins 3% + ICMS SP ~18%)", 0.2165
+            aliq_novo_str, base_aliq_novo = "26,50% (IVA Dual Padrão: CBS + IBS com créditos plenos)", 0.265
         else:
-            aliq_atual_str = "27,25% (PIS 1,65% + Cofins 7,6% + ICMS SP ~18% com créditos restritos)"
-            base_aliq_atual = 0.2725
-            aliq_novo_str = "26,50% (IVA Dual Padrão com Não-Cumulatividade Financeira Plena)"
-            base_aliq_novo = 0.265
+            aliq_atual_str, base_aliq_atual = "27,25% (PIS 1,65% + Cofins 7,6% + ICMS SP ~18% com créditos restritos)", 0.2725
+            aliq_novo_str, base_aliq_novo = "26,50% (IVA Dual Padrão com Não-Cumulatividade Financeira Plena)", 0.265
 
     elif "Supermercado" in segmento:
         if regime_tributario == "Simples Nacional":
-            aliq_atual_str = "3,50% (Anexo I - Comércio com itens essenciais)"
-            base_aliq_atual = 0.035
-            aliq_novo_str = "3,50% (DAS) ou Alíquota Zero (Itens da Cesta Básica Nacional)"
-            base_aliq_novo = 0.035
-        elif regime_tributario == "Lucro Presumido":
-            aliq_atual_str = "18,00% (Carga mista PIS/Cofins/ICMS com substituição tributária)"
-            base_aliq_atual = 0.18
-            aliq_novo_str = "12,00% (Média ponderada com desoneração da Cesta Básica)"
-            base_aliq_novo = 0.12
+            aliq_atual_str, base_aliq_atual = "3,50% (Anexo I - Comércio com itens essenciais)", 0.035
+            aliq_novo_str, base_aliq_novo = "3,50% (DAS) ou Alíquota Zero (Itens da Cesta Básica Nacional)", 0.035
         else:
-            aliq_atual_str = "18,00% (Carga mista com apuração complexa de créditos)"
-            base_aliq_atual = 0.18
-            aliq_novo_str = "12,00% (Média ponderada com desoneração da Cesta Básica)"
-            base_aliq_novo = 0.12
+            aliq_atual_str, base_aliq_atual = "18,00% (Carga mista PIS/Cofins/ICMS)", 0.18
+            aliq_novo_str, base_aliq_novo = "12,00% (Média ponderada com desoneração da Cesta Básica)", 0.12
 
     elif "Restaurante" in segmento:
         if regime_tributario == "Simples Nacional":
-            aliq_atual_str = "5,00% (Anexo I/III - Alimentação)"
-            base_aliq_atual = 0.05
-            aliq_novo_str = "5,00% (DAS) ou IVA Dual setorial com redução regulamentada"
-            base_aliq_novo = 0.05
-        elif regime_tributario == "Lucro Presumido":
-            aliq_atual_str = "14,00% (PIS/Cofins + ICMS reduzido para bares e restaurantes em SP)"
-            base_aliq_atual = 0.14
-            aliq_novo_str = "20,00% (IVA Dual ajustado para setor de alimentação fora do lar)"
-            base_aliq_novo = 0.20
+            aliq_atual_str, base_aliq_atual = "5,00% (Anexo I/III - Alimentação)", 0.05
+            aliq_novo_str, base_aliq_novo = "5,00% (DAS) ou IVA Dual setorial com redução", 0.05
         else:
-            aliq_atual_str = "14,00% (PIS/Cofins + ICMS com créditos limitados)"
-            base_aliq_atual = 0.14
-            aliq_novo_str = "20,00% (IVA Dual ajustado com créditos operacionais amplos)"
-            base_aliq_novo = 0.20
+            aliq_atual_str, base_aliq_atual = "14,00% (PIS/Cofins + ICMS reduzido em SP)", 0.14
+            aliq_novo_str, base_aliq_novo = "20,00% (IVA Dual ajustado para setor de alimentação)", 0.20
 
-    elif "Serviços" in segmento:
+    elif "Serviços" in segmento or "Tecnologia" in segmento:
         if regime_tributario == "Simples Nacional":
-            aliq_atual_str = "6,00% (Anexo III inicial - Serviços)"
-            base_aliq_atual = 0.06
-            aliq_novo_str = "6,00% (DAS) ou destaque opcional do IVA Dual"
-            base_aliq_novo = 0.06
+            aliq_atual_str, base_aliq_atual = "6,00% (Anexo III inicial)", 0.06
+            aliq_novo_str, base_aliq_novo = "6,00% (DAS) ou destaque opcional do IVA Dual", 0.06
         elif regime_tributario == "Lucro Presumido":
-            aliq_atual_str = "8,65% (PIS 0,65% + Cofins 3% + ISS SP 5%)"
-            base_aliq_atual = 0.0865
-            aliq_novo_str = "26,50% (IVA Dual Padrão: CBS + IBS unificados)"
-            base_aliq_novo = 0.265
+            aliq_atual_str, base_aliq_atual = "8,65% (PIS/Cofins + ISS SP 5%)", 0.0865
+            aliq_novo_str, base_aliq_novo = "26,50% (IVA Dual Padrão unificado)", 0.265
         else:
-            aliq_atual_str = "14,25% (PIS 1,65% + Cofins 7,6% não cumulativos + ISS SP 5%)"
-            base_aliq_atual = 0.1425
-            aliq_novo_str = "26,50% (IVA Dual Padrão com dedução irrestrita de insumos)"
-            base_aliq_novo = 0.265
-
-    elif "Tecnologia" in segmento:
-        if regime_tributario == "Simples Nacional":
-            aliq_atual_str = "6,00% a 15,5% (Anexo III / V conforme Fator R)"
-            base_aliq_atual = 0.06
-            aliq_novo_str = "6,00% (DAS) ou IVA Dual setorial"
-            base_aliq_novo = 0.06
-        elif regime_tributario == "Lucro Presumido":
-            aliq_atual_str = "8,65% (PIS/Cofins + ISS SP 5%)"
-            base_aliq_atual = 0.0865
-            aliq_novo_str = "26,50% (IVA Dual Padrão sobre licenciamento de software e serviços)"
-            base_aliq_novo = 0.265
-        else:
-            aliq_atual_str = "14,25% (PIS/Cofins + ISS SP 5%)"
-            base_aliq_atual = 0.1425
-            aliq_novo_str = "26,50% (IVA Dual Padrão com aproveitamento de créditos de servidores e nuvem)"
-            base_aliq_novo = 0.265
+            aliq_atual_str, base_aliq_atual = "14,25% (PIS/Cofins não cumulativos + ISS SP 5%)", 0.1425
+            aliq_novo_str, base_aliq_novo = "26,50% (IVA Dual Padrão com dedução irrestrita)", 0.265
 
     else: # Saúde
         if regime_tributario == "Simples Nacional":
-            aliq_atual_str = "5,00% a 10% (Anexo III - Clínicas e Saúde)"
-            base_aliq_atual = 0.05
-            aliq_novo_str = "5,00% (DAS) ou alíquota reduzida por benesse constitucional"
-            base_aliq_novo = 0.05
-        elif regime_tributario == "Lucro Presumido":
-            aliq_atual_str = "8,00% (PIS/Cofins + ISS reduzido para serviços médicos em SP)"
-            base_aliq_atual = 0.08
-            aliq_novo_str = "10,60% (IVA Dual com redução de 60% garantida pelo PLP 68/2024)"
-            base_aliq_novo = 0.106
+            aliq_atual_str, base_aliq_atual = "5,00% (Anexo III)", 0.05
+            aliq_novo_str, base_aliq_novo = "5,00% (DAS) ou alíquota reduzida", 0.05
         else:
-            aliq_atual_str = "8,00% (Carga mista de serviços de saúde)"
-            base_aliq_atual = 0.08
-            aliq_novo_str = "10,60% (IVA Dual com redução de 60% e créditos plenos sobre equipamentos)"
-            base_aliq_novo = 0.106
+            aliq_atual_str, base_aliq_atual = "8,00% (Carga mista de serviços de saúde)", 0.08
+            aliq_novo_str, base_aliq_novo = "10,60% (IVA Dual com redução de 60% garantida)", 0.106
 
     imposto_atual_val = faturamento_input * base_aliq_atual
     imposto_novo_val = faturamento_input * base_aliq_novo
@@ -458,31 +371,6 @@ elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
             value=f"R$ {diferenca_valor:+,.2f}",
             delta=f"{percentual_variacao:+.1f}%",
             delta_color="inverse"
-        )
-
-    st.markdown("---")
-    st.markdown("### 📝 Parecer Técnico Analítico para o Setor")
-    
-    if regime_tributario == "Simples Nacional":
-        st.info(
-            f"**Análise para {segmento} no Simples Nacional:** "
-            "A empresa está protegida pela imunidade de simplificação do Simples, mantendo a opção de recolhimento unificado via DAS. "
-            "No entanto, caso atenda predominantemente a outras empresas (B2B), a legislação da reforma permite optar por destacar "
-            "o IBS e a CBS fora do DAS para que o seu cliente aproveite 100% dos créditos tributários."
-        )
-    elif regime_tributario == "Lucro Presumido":
-        st.info(
-            f"**Análise para {segmento} no Lucro Presumido:** "
-            "Os tributos fragmentados antigos (PIS, Cofins e ICMS/ISS) são substituídos pelo IVA Dual unificado. "
-            "Embora a alíquota nominal se aproxime do padrão internacional, a grande vantagem competitiva reside no "
-            "**aproveitamento pleno de créditos** sobre todas as aquisições de insumos operacionais e mercadorias, eliminando o efeito cascata."
-        )
-    else:
-        st.info(
-            f"**Análise para {segmento} no Lucro Real:** "
-            "Com a aplicação da **não-cumulatividade financeira plena**, o contencioso sobre o conceito restrito de insumo deixa de existir. "
-            "Qualquer despesa operacional, mercadoria ou investimento incorrido na atividade gera crédito imediato para dedução automática, "
-            "garantindo total neutralidade fiscal e otimização de fluxo de caixa para a corporação."
         )
 
 elif opcao == "🚢 8. Simulação de Importação & Cotação do Dólar":
@@ -554,20 +442,6 @@ elif opcao == "🚢 8. Simulação de Importação & Cotação do Dólar":
             delta=f"Crédito recuperado: R$ {credito_recuperavel:,.2f}",
             delta_color="normal"
         )
-
-    st.markdown("---")
-    st.subheader("📋 Tabela Comparativa de Alíquotas (%) na Importação")
-    st.markdown(
-        """
-        | Tributo / Etapa | Sistema Antigo (Cenário Vigente) | Novo Modelo da Reforma (IVA Dual) |
-        | :--- | :--- | :--- |
-        | **Imposto de Importação (II)** | Variável conforme NCM (`0%` a `35%`) | Mantido inalterado (Federal aduaneiro) |
-        | **Tributos Federais de Consumo** | PIS-Importação (`2,1%`) + Cofins-Importação (`9,65%`) | **CBS (Federal)**: Unificada (~`8,8%` a `9,5%` de referência) |
-        | **Trivial Estaduais de Consumo** | ICMS-Importação em SP (`18%`) | **IBS (Subnacional)**: Unificado (~`17%` a `17,5%` de referência) |
-        | **Carga Tributária Total Nominal** | Aproximadamente `29,75%` acumulativa | **`26,50%`** (IVA Dual Padrão combinando CBS + IBS) |
-        | **Aproveitamento de Crédito** | Restrito e sujeito a litígios de insumo | **Crédito Financeiro Pleno e Imediato** para empresas regulares |
-        """
-    )
 
 elif opcao == "🤖 9. IA Consultora Oficial (Base de Dados do Governo)":
     st.header("🤖 Inteligência Artificial Especialista na Reforma Tributária")
