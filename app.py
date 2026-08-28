@@ -64,7 +64,6 @@ if opcao == "1. Visão Geral & Marco Constitucional":
     )
 
     col1, col2 = st.columns(2)
-
     with col1:
         st.error("❌ Como era (O Sistema Antigo)")
         st.markdown(
@@ -74,7 +73,6 @@ if opcao == "1. Visão Geral & Marco Constitucional":
         - **Litigiosidade Extrema:** Milhares de horas e bilhões de reais gastos em contenciosos judiciais sobre o conceito de insumo.
         """
         )
-
     with col2:
         st.success("✅ Como vai ficar (O Novo Sistema - 2026 a 2033)")
         st.markdown(
@@ -86,27 +84,61 @@ if opcao == "1. Visão Geral & Marco Constitucional":
         )
 
     st.markdown("---")
-    st.subheader("📅 Cronograma Oficial de Transição (2026 a 2033)")
-    st.write(
-        "A implementação do novo sistema ocorre de forma gradual para permitir a adaptação tecnológica "
-        "dos contribuintes e a convivência controlada entre os tributos antigos e o novo IVA Dual:"
-    )
+    st.subheader("🏢 Impactos Práticos na Gestão das Empresas")
+    col_e1, col_e2 = st.columns(2)
+    with col_e1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Fim da Guerra Fiscal:** As empresas deixam de escolher locais de instalação com base em favores fiscais distorcidos.
+        - **Simplificação Operacional:** Redução expressiva no custo de conformidade e planejamento tributário logístico.
+        """
+        )
+    with col_e2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Custo de Transição:** Necessidade de aportes financeiros em novos softwares corporativos e reestruturação de contratos.
+        - **Incerteza Inicial:** Período de adaptação às novas regras de apuração nacional compartilhada entre União, Estados e Municípios.
+        """
+        )
 
+    st.markdown("---")
+    st.subheader("📚 Impactos Práticos na Rotina da Contabilidade")
+    col_c1, col_c2 = st.columns(2)
+    with col_c1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Padronização Normativa:** Fim das divergências bizarras entre legislações estaduais e municipais concorrentes.
+        - **Valorização Consultiva:** O contador assume papel estratégico direto na reengenharia financeira e societária dos clientes.
+        """
+        )
+    with col_c2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Sobrecarga de Trabalho na Transição:** Acúmulo de obrigações durante os anos de convivência simultânea entre os sistemas antigo e novo.
+        - **Curva de Aprendizado Acelerada:** Exigência de domínio imediato de conceitos contábeis e fiscais inéditos do IVA Dual.
+        """
+        )
+
+    st.markdown("---")
+    st.subheader("📅 Cronograma Oficial de Transição (2026 a 2033)")
     st.markdown(
         """
         | Ano / Período | Marco de Implementação / O que muda na prática | Tributos Envolvidos |
         | :--- | :--- | :--- |
         | **2026** | **Ano-Teste Nacional:** Início dos testes operacionais com alíquotas de referência para validação de sistemas e notas fiscais. | CBS (`0,9%`) e IBS (`0,1%`) |
-        | **2027** | **Entrada da CBS Plena e Fim do PIS/Cofins:** Extinção definitiva do PIS, da Cofins e do IPI (exceto Zona Franca de Manaus); início do Imposto Seletivo (IS). | CBS Cheia + Extinção de PIS/Cofins/IPI + Início do IS |
-        | **2028** | **Consolidação Federal e Ajustes:** Manutenção da CBS plena e ajustes normativos nas legislações complementares. | CBS Plena + Manutenção de ICMS/ISS |
-        | **2029** | **Início da Transição do IBS (10%):** Os estados e municípios começam a substituir progressivamente o ICMS e o ISS pelo IBS. | IBS (`10%`) + ICMS/ISS (`90%`) |
+        | **2027** | **Entrada da CBS Plena e Fim do PIS/Cofins:** Extinção definitiva do PIS, da Cofins e do IPI; início do Imposto Seletivo (IS). | CBS Cheia + Extinção PIS/Cofins/IPI + Início IS |
+        | **2028** | **Consolidação Federal e Ajustes:** Manutenção da CBS plena e ajustes normativos complementares. | CBS Plena + Manutenção ICMS/ISS |
+        | **2029** | **Início da Transição do IBS (10%):** Estados e municípios começam a substituir progressivamente ICMS/ISS pelo IBS. | IBS (`10%`) + ICMS/ISS (`90%`) |
         | **2030** | **Progressão do IBS (20%):** Aumento da participação do IBS e redução proporcional de ICMS e ISS. | IBS (`20%`) + ICMS/ISS (`80%`) |
         | **2031** | **Aceleração da Transição (30%):** Continuidade da substituição gradual da arrecadação subnacional. | IBS (`30%`) + ICMS/ISS (`70%`) |
-        | **2032** | **Fase Final da Transição (40%):** Último ano de convivência mista entre os tributos estaduais/municipais antigos e o IBS. | IBS (`40%`) + ICMS/ISS (`60%`) |
-        | **2033** | **Sistema Pleno Vigente:** Extinção total e definitiva de ICMS e ISS. O IVA Dual (CBS + IBS) passa a vigorar integralmente no país. | Apenas CBS + IBS + Imposto Seletivo (Sistema 100% Pleno) |
+        | **2032** | **Fase Final da Transição (40%):** Último ano de convivência mista entre tributos antigos e o IBS. | IBS (`40%`) + ICMS/ISS (`60%`) |
+        | **2033** | **Sistema Pleno Vigente:** Extinção total de ICMS e ISS. O IVA Dual (CBS + IBS) vigora integralmente. | Apenas CBS + IBS + Imposto Seletivo |
         """
     )
-
     st.markdown("🔗 **Referência Legal Oficial:** [Emenda Constitucional nº 132/2023 - Planalto](https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm)")
 
 elif opcao == "2. IVA Dual (CBS e IBS) - PLP 68/2024":
@@ -125,25 +157,62 @@ elif opcao == "2. IVA Dual (CBS e IBS) - PLP 68/2024":
     )
 
     col1, col2 = st.columns(2)
-
     with col1:
         st.error("❌ Como era")
         st.markdown(
             """
-        - Apuração separada de PIS/Cofins federais com regras complexas de cumulatividade (Lucro Presumido vs. Real).
-        - Divergências severas entre o ICMS estadual e o ISS municipal na prestação de serviços híbridos.
+        - Apuração separada de PIS/Cofins com regras complexas (Lucro Presumido vs. Real).
+        - Divergências severas entre ICMS estadual e ISS municipal em serviços híbridos.
         """
         )
-
     with col2:
         st.success("✅ Como vai ficar")
         st.markdown(
             """
-        - Guia unificada de pagamento e notas fiscais eletrônicas padronizadas em nível nacional.
-        - Extinção total de litígios sobre o conceito estrito de 'insumo industrial'.
+        - Guia unificada de pagamento e notas fiscais eletrônicas padronizadas nacionalmente.
+        - Extinção total de litígios judiciais sobre o conceito restrito de insumo.
         """
         )
 
+    st.markdown("---")
+    st.subheader("🏢 Impactos Práticos na Gestão das Empresas")
+    col_e1, col_e2 = st.columns(2)
+    with col_e1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Crédito Imediato:** Aproveitamento financeiro de créditos tributários sem barreiras de interpretação setorial.
+        - **Previsibilidade de Caixa:** Apuração centralizada por CNPJ que otimiza o capital de giro.
+        """
+        )
+    with col_e2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Alíquota Padrão Elevada:** Possível pressão sobre margens de lucro em setores que antes possuíam cargas efetivas menores.
+        - **Adaptação de Processos:** Necessidade de revisão profunda nos sistemas de emissão e controle de notas de entrada e saída.
+        """
+        )
+
+    st.markdown("---")
+    st.subheader("📚 Impactos Práticos na Rotina da Contabilidade")
+    col_c1, col_c2 = st.columns(2)
+    with col_c1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Eliminação de Teses Confusas:** Fim das intermináveis discussões jurídicas sobre direito a crédito de PIS/Cofins e ICMS.
+        - **Automação de Apurações:** Redução drástica do trabalho manual repetitivo na apuração de impostos mensais.
+        """
+        )
+    with col_c2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Complexidade na Transição de Saldos Credores:** Controle rigoroso de saldos acumulados antigos de ICMS e PIS/Cofins.
+        - **Riscos de Conformidade:** Rigor tecnológico na fiscalização digital integrada exigirá controle absoluto por parte do escritório.
+        """
+        )
     st.markdown("🔗 **Referência Legal Oficial:** [PLP 68/2024 - Câmara dos Deputados](https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2456475)")
 
 elif opcao == "3. Imposto Seletivo (IS) & Externalidades":
@@ -165,15 +234,52 @@ elif opcao == "3. Imposto Seletivo (IS) & Externalidades":
     )
 
     col1, col2 = st.columns(2)
-
     with col1:
         st.error("❌ Como era")
-        st.markdown("- Tributação difusa pelo IPI e tributos estaduais sem uniformidade nacional de foco em saúde pública.")
-
+        st.markdown("- Tributação difusa pelo IPI e tributos estaduais sem uniformidade nacional voltada para a saúde pública.")
     with col2:
         st.success("✅ Como vai ficar")
         st.markdown("- Incidência monofásica federal calculada diretamente sobre o fator de nocividade (ex: teor de açúcar ou poluição).")
 
+    st.markdown("---")
+    st.subheader("🏢 Impactos Práticos na Gestão das Empresas")
+    col_e1, col_e2 = st.columns(2)
+    with col_e1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Regras Nacionais Claras:** Substituição de devedores e regras estaduais fragmentadas por um padrão federal unificado.
+        - **Incentivo à Inovação:** Premiação tributária para empresas que desenvolvem produtos menos poluentes ou mais saudáveis.
+        """
+        )
+    with col_e2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Impacto Direto no Preço Final:** Aumento de carga tributária sobre setores específicos (bebidas, tabaco, mineração e automotivo).
+        - **Risco de Retração de Demanda:** Possível queda nas vendas decorrente do encarecimento de produtos sujeitos ao IS.
+        """
+        )
+
+    st.markdown("---")
+    st.subheader("📚 Impactos Práticos na Rotina da Contabilidade")
+    col_c1, col_c2 = st.columns(2)
+    with col_c1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Clareza de Incidência:** Rol restrito definido em lei, facilitando a identificação exata de quais produtos sofrem o imposto.
+        - **Oportunidade Consultiva:** Orientação estratégica a indústrias sobre reformulação de portfólio para mitigação de custos.
+        """
+        )
+    with col_c2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Monitoramento de Parâmetros Técnicos:** Necessidade de controlar métricas físico-químicas complexas (teor de açúcar, poluição) no ERP.
+        - **Gestão de Riscos Fiscais:** Risco elevado de autuações para empresas que classificarem incorretamente o fator de nocividade do produto.
+        """
+        )
     st.markdown("🔗 **Referência Legal Oficial:** [Senado Federal - Notícias e Textos Legais](https://www12.senado.leg.br)")
 
 elif opcao == "4. Cashback Tributário & Justiça Social":
@@ -192,15 +298,52 @@ elif opcao == "4. Cashback Tributário & Justiça Social":
     )
 
     col1, col2 = st.columns(2)
-
     with col1:
         st.error("❌ Como era")
-        st.markdown("- Cidadãos de menor renda pagavam proporcionalmente a mesma alíquota de impostos indiretos que os mais ricos, sem restituição.")
-
+        st.markdown("- Cidadãos de menor renda pagavam proporcionalmente a mesma alíquota de impostos indiretos que os mais ricos, sem qualquer restituição.")
     with col2:
         st.success("✅ Como vai ficar")
         st.markdown("- Devolução de até 100% da parcela federal (CBS) e percentual da parcela subnacional (IBS) diretamente na conta do cidadão.")
 
+    st.markdown("---")
+    st.subheader("🏢 Impactos Práticos na Gestão das Empresas")
+    col_e1, col_e2 = st.columns(2)
+    with col_e1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Estímulo ao Consumo Popular:** Aumento do poder de compra das famílias de baixa renda, impulsionando o varejo essencial.
+        - **Inclusão Digital e Fiscal:** Formalização de pequenos comércios locais que atendem a base da pirâmide consumidora.
+        """
+        )
+    with col_e2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Exigência de Informação no Varejo:** Obrigação de capturar o CPF do adquirente corretamente em todas as operações elegíveis.
+        - **Adequação Tecnológica:** Necessidade de integração dos sistemas de PDV com as plataformas governamentais de validação de benefício.
+        """
+        )
+
+    st.markdown("---")
+    st.subheader("📚 Impactos Práticos na Rotina da Contabilidade")
+    col_c1, col_c2 = st.columns(2)
+    with col_c1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Automação Governamental:** O cálculo e o pagamento do cashback são geridos pelo governo, desonerando a empresa de repasses diretos.
+        - **Conformidade Simplificada:** Validação automatizada via nota fiscal eletrônica, reduzindo o esforço de controle interno.
+        """
+        )
+    with col_c2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Auditoria de Emissão:** Risco de responsabilidade subsidiária caso o estabelecimento preencha incorretamente os dados do adquirente na nota.
+        - **Suporte a Clientes do Varejo:** Necessidade de orientar comerciantes de pequeno porte sobre a exigência correta do CPF na nota.
+        """
+        )
     st.markdown("🔗 **Referência Legal Oficial:** [Ministério da Fazenda - Cidadania Fiscal](https://www.gov.br/fazenda)")
 
 elif opcao == "5. Split Payment & Tecnologia de Arrecadação":
@@ -219,15 +362,52 @@ elif opcao == "5. Split Payment & Tecnologia de Arrecadação":
     )
 
     col1, col2 = st.columns(2)
-
     with col1:
         st.error("❌ Como era")
-        st.markdown("- O lojista recebia o valor total da venda e recolhia o imposto dias ou semanas depois via guia, gerando riscos de inadimplência.")
-
+        st.markdown("- O lojista recebia o valor total da venda e recolhia o imposto dias ou semanas depois via guia, gerando passivos e riscos de inadimplência.")
     with col2:
         st.success("✅ Como vai ficar")
         st.markdown("- Separação tributária em tempo real na maquininha ou gateway de pagamento, zerando a sonegação e gerando crédito imediato.")
 
+    st.markdown("---")
+    st.subheader("🏢 Impactos Práticos na Gestão das Empresas")
+    col_e1, col_e2 = st.columns(2)
+    with col_e1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Zerar Passivo Tributário Acidental:** Fim do risco de gastar o dinheiro do imposto retido e acumular dívidas fiscais involuntárias.
+        - **Crédito Imediato na Cadeia:** O adquirente valida seu crédito fiscal no exato segundo da liquidação da transação comercial.
+        """
+        )
+    with col_e2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Impacto Temporário no Fluxo de Caixa:** Retenção instantânea do imposto na fonte, exigindo ajuste no capital de giro operacional.
+        - **Dependência Tecnológica:** Dependência absoluta de adquirentes, subadquirentes e bancos integrados ao padrão do Banco Central.
+        """
+        )
+
+    st.markdown("---")
+    st.subheader("📚 Impactos Práticos na Rotina da Contabilidade")
+    col_c1, col_c2 = st.columns(2)
+    with col_c1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Fim da Emissão de Guias Manuais:** Redução drástica da emissão de DARFs e GAREs mensais de apuração de consumo.
+        - **Reconciliação Automatizada:** Maior facilidade para conciliar extratos de recebimento líquido com relatórios fiscais.
+        """
+        )
+    with col_c2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Complexidade de Conciliação Bancária:** Exigência de novos métodos de auditoria para validar divergências entre o split e o faturamento bruto.
+        - **Suporte a Falhas de Sistema:** Atendimento a clientes em casos de falhas de comunicação entre meios de pagamento e o fisco.
+        """
+        )
     st.markdown("🔗 **Referência Legal Oficial:** [Banco Central do Brasil - Sistema de Pagamentos](https://www.bcb.gov.br)")
 
 elif opcao == "6. Cesta Básica & Alíquotas Reduzidas":
@@ -246,15 +426,52 @@ elif opcao == "6. Cesta Básica & Alíquotas Reduzidas":
     )
 
     col1, col2 = st.columns(2)
-
     with col1:
         st.error("❌ Como era")
-        st.markdown("- Alíquotas desorganizadas de PIS/Cofins e ICMS variando de estado para estado sobre alimentos e remédios.")
-
+        st.markdown("- Alíquotas desorganizadas de PIS/Cofins e ICMS variando de estado para estado sobre alimentos e remédios essenciais.")
     with col2:
         st.success("✅ Como vai ficar")
         st.markdown("- Isenção absoluta (0%) padronizada em todo o território nacional para os alimentos essenciais da Cesta Básica.")
 
+    st.markdown("---")
+    st.subheader("🏢 Impactos Práticos na Gestão das Empresas")
+    col_e1, col_e2 = st.columns(2)
+    with col_e1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Padronização Nacional:** Fim das divergências estaduais sobre quais produtos compõem a cesta básica e as isenções.
+        - **Estímulo ao Setor Essencial:** Aumento da competitividade de produtores e distribuidores de alimentos e medicamentos.
+        """
+        )
+    with col_e2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Gestão de Créditos Acumulados:** Com alíquota zero na saída, a empresa geradora pode acumular créditos nas etapas anteriores que exigem ressarcimento.
+        - **Classificação Rigorosa de SKUs:** Risco operacional elevado caso produtos não isentos sejam classificados incorretamente como cesta básica.
+        """
+        )
+
+    st.markdown("---")
+    st.subheader("📚 Impactos Práticos na Rotina da Contabilidade")
+    col_c1, col_c2 = st.columns(2)
+    with col_c1:
+        st.success("🟢 Positivos")
+        st.markdown(
+            """
+        - **Regras Claras e Federais:** Facilidade na orientação consultiva devido ao rol taxativo e nacional da Cesta Básica.
+        - **Segurança Jurídica:** Redução drástica de litígios sobre enquadramento tributário de medicamentos e itens de saúde.
+        """
+        )
+    with col_c2:
+        st.error("🔴 Negativos")
+        st.markdown(
+            """
+        - **Controle de Ressarcimento:** Necessidade de acompanhar e auditar constantemente processos de pedido de ressarcimento de créditos acumulados.
+        - **Revisão de Cadastros de Produtos:** Esforço operacional massivo na revisão de NCMs e descritivos de milhares de produtos no ERP dos clientes.
+        """
+        )
     st.markdown("🔗 **Referência Legal Oficial:** [Câmara dos Deputados - Proposições](https://www.camara.leg.br)")
 
 elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
@@ -267,7 +484,6 @@ elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
     st.subheader("⚙️ Configuração dos Dados da Empresa")
     
     col_s1, col_s2, col_s3 = st.columns(3)
-
     with col_s1:
         faturamento_input = st.number_input(
             "Faturamento Bruto Mensal (R$)",
@@ -277,7 +493,6 @@ elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
             step=500.0,
             format="%.2f"
         )
-
     with col_s2:
         segmento = st.selectbox(
             "Segmento de Mercado / Atividade",
@@ -290,7 +505,6 @@ elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
                 "Saúde / Clínicas Médicas"
             ]
         )
-
     with col_s3:
         regime_tributario = st.selectbox(
             "Regime Tributário Atual",
@@ -366,14 +580,12 @@ elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
     st.divider()
 
     col_res1, col_res2, col_res3 = st.columns(3)
-
     with col_res1:
         st.metric(
             label="Carga Tributária Atual (R$)",
             value=f"R$ {imposto_atual_val:,.2f}",
             delta=f"Efetiva: {(base_aliq_atual)*100:.2f}%"
         )
-
     with col_res2:
         st.metric(
             label="Nova Carga (Reforma Tributária)",
@@ -381,7 +593,6 @@ elif opcao == "📊 7. Simulador Interativo Setorial (Estilo Pro)":
             delta=f"Efetiva: {(base_aliq_novo)*100:.2f}%",
             delta_color="off"
         )
-
     with col_res3:
         st.metric(
             label="Variação Estimada",
@@ -401,7 +612,6 @@ elif opcao == "🚢 8. Simulação de Importação & Tributação no Destino":
     st.subheader("🧮 Calculadora Aduaneira em Reais (R$)")
 
     col_imp1, col_imp2 = st.columns(2)
-
     with col_imp1:
         valor_cif_brl = st.number_input(
             "Valor Aduaneiro da Mercadoria (CIF em R$)",
@@ -412,7 +622,6 @@ elif opcao == "🚢 8. Simulação de Importação & Tributação no Destino":
             format="%.2f"
         )
         aliq_ii = st.slider("Alíquota do Imposto de Importação (II) (%)", 0.0, 50.0, 14.0, 1.0)
-
     with col_imp2:
         regime_importador = st.selectbox(
             "Regime do Importador no Brasil",
@@ -435,14 +644,12 @@ elif opcao == "🚢 8. Simulação de Importação & Tributação no Destino":
     st.subheader("📈 Resultado da Simulação Aduaneira")
 
     res_imp1, res_imp2, res_imp3 = st.columns(3)
-
     with res_imp1:
         st.metric(
             label="Tributos no Sistema Antigo",
             value=f"R$ {tributos_antigos_val:,.2f}",
             delta="Alíquota efetiva ~29,75%"
         )
-
     with res_imp2:
         st.metric(
             label="Novo IVA Dual (Bruto na Fronteira)",
@@ -450,7 +657,6 @@ elif opcao == "🚢 8. Simulação de Importação & Tributação no Destino":
             delta="Alíquota padrão 26,50%",
             delta_color="off"
         )
-
     with res_imp3:
         st.metric(
             label="Custo Tributário Efetivo Líquido",
@@ -468,7 +674,6 @@ elif opcao == "📈 9. Impactos no SPED Fiscal (Atual vs. Futuro)":
 
     st.markdown("---")
     col_s1, col_s2 = st.columns(2)
-
     with col_s1:
         st.error("❌ Como é no Sistema Atual (SPED Tradicional)")
         st.markdown(
@@ -479,7 +684,6 @@ elif opcao == "📈 9. Impactos no SPED Fiscal (Atual vs. Futuro)":
         - **Inconsistências Críticas:** Cruzamentos complexos de malha fiscal entre o EFD, NF-e e DCTF que geram autuações frequentes.
         """
         )
-
     with col_s2:
         st.success("✅ Como ficará na Reforma (Novo Modelo / SPED Digital)")
         st.markdown(
