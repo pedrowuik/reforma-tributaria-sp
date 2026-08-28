@@ -25,7 +25,7 @@ def obter_cotacao_dolar():
 
 cotacao_dolar_atual = obter_cotacao_dolar()
 
-# Título principal atualizado conforme solicitado
+# Título principal
 st.title("🇧🇷 Simulador Pratico - Reforma Tributaria - Pedro Marques")
 st.markdown(
     "Plataforma técnica baseada na **Emenda Constitucional nº 132/2023** e nos textos complementares "
@@ -563,7 +563,7 @@ elif opcao == "🚢 8. Simulação de Importação & Cotação do Dólar":
         | :--- | :--- | :--- |
         | **Imposto de Importação (II)** | Variável conforme NCM (`0%` a `35%`) | Mantido inalterado (Federal aduaneiro) |
         | **Tributos Federais de Consumo** | PIS-Importação (`2,1%`) + Cofins-Importação (`9,65%`) | **CBS (Federal)**: Unificada (~`8,8%` a `9,5%` de referência) |
-        | **Tributos Estaduais de Consumo** | ICMS-Importação em SP (`18%`) | **IBS (Subnacional)**: Unificado (~`17%` a `17,5%` de referência) |
+        | **Trivial Estaduais de Consumo** | ICMS-Importação em SP (`18%`) | **IBS (Subnacional)**: Unificado (~`17%` a `17,5%` de referência) |
         | **Carga Tributária Total Nominal** | Aproximadamente `29,75%` acumulativa | **`26,50%`** (IVA Dual Padrão combinando CBS + IBS) |
         | **Aproveitamento de Crédito** | Restrito e sujeito a litígios de insumo | **Crédito Financeiro Pleno e Imediato** para empresas regulares |
         """
@@ -620,7 +620,4 @@ elif opcao == "🤖 9. IA Consultora Oficial (Base de Dados do Governo)":
                     st.error(f"Ocorreu um erro ao conectar com a IA: {e}")
 
 st.divider()
-st.caption(
-    "Desenvolvido bypedromarques com base nas diretrizes oficiais da Emenda Constitucional nº 132/2023, "
-    "dos Projetos de Lei Complementar (PLP 68/2024 e PLP 108/2024) e fontes oficiais do Ministério da Fazenda. "
-    "Consulte sempre as publicações atualizadas no Diário Oficial da União."
+st.caption("Desenvolvido por Pedro Marques com base nas diretrizes oficiais da EC 132/2023 e PLP 68/2024.")
